@@ -1,0 +1,25 @@
+Git – rozproszony system kontroli wersji. 
+
+Git stanowi wolne oprogramowanie i został opublikowany na licencji GNU GPL w wersji 2.
+ 
+Najważniejsze cechy
+
+Dobre wsparcie dla rozgałęzionego procesu tworzenia oprogramowania: 
+              jest dostępnych kilka algorytmów łączenia zmian z dwóch gałęzi, a także możliwość dodawania własnych algorytmów.
+
+Praca off-line: 
+              każdy programista posiada własną kopię repozytorium, do której może zapisywać zmiany bez połączenia z siecią; następnie 
+              zmiany mogą być wymieniane między lokalnymi repozytoriami.
+
+Wsparcie dla istniejących protokołów sieciowych: 
+              dane można wymieniać przez HTTP(S), FTP, rsync (usunięte w wersji Git 2.8.0), SSH.
+
+Efektywna praca z dużymi projektami: 
+              system Git według zapewnień Torvaldsa, a także według testów fundacji Mozilla, jest o rzędy wielkości szybszy niż niektóre 
+              konkurencyjne rozwiązania.
+
+Każda rewizja to obraz całego projektu: 
+
+              w przeciwieństwie do innych systemów kontroli wersji, Git nie zapamiętuje zmian między kolejnymi rewizjami, lecz kompletne obrazy. 
+              Z jednej strony wymaga to nieco więcej pracy aby porównać dwie rewizje, z drugiej jednak pozwala np. na automatyczną obsługę zmian 
+              nazw plików
