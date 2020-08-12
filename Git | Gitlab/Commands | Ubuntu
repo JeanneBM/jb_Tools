@@ -1,1 +1,4 @@
+apt-get install git
+git init
+git init /...
 
