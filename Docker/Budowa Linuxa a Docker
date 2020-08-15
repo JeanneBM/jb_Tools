@@ -12,3 +12,9 @@ swoje wirtualne sieci, co jest niezbędne w przypadku kontenerów.
 Manual:
 man 7 namespaces i 
 man 7 cgroups 
+
+Containers are just a process (or a group of processes) running in isolation, which is achieved with Linux namespaces and control groups. 
+Linux namespaces and control groups are features that are built into the Linux kernel. Other than the Linux kernel itself, there is nothing special about containers.
+
+Kontenery to po prostu proces (lub grupa procesów) działający w izolacji, co można osiągnąć dzięki przestrzeniom nazw i grupom kontrolnym systemu Linux.
+Przestrzenie nazw i grupy kontrolne systemu Linux to funkcje wbudowane w jądro systemu Linux. Poza samym jądrem Linuksa nie ma nic specjalnego w kontenerach.
