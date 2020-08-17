@@ -33,4 +33,5 @@ i zbuduje ->>  <none>                <none>              15bc1dc437dd        3 s
 
 docker run -p 5001:5000 -d python-hello-world
 http://localhost:5001
+docker container logs [container id]            // docker image ls
 
