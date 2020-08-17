@@ -36,3 +36,7 @@ http://localhost:5001
 docker container logs [container id]            // docker image ls
 docker run python-hello-world
 
+docker tag python-hello-world joannademo/python-hello-world
+docker push joannademo/python-hello-world
+
+
