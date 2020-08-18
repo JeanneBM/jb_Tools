@@ -25,3 +25,15 @@ RUN npm install
 
 CMD ["supervisord", "-n"]
 
+
+git clone https://github.com/... \ --config core.autocrlf=input
+cd docker-node-hello
+tree -a -I .git
+docker build -t example/docker-node-hello:latest .
+docker build -t example/docker-node-hello:latest --no-cache .
+docker run --rm -ti 8a773166866c /bin/bash
+docker build -t example/docker-node-hello:latest .
+
+docker run -d -p 8080:8080 example/docker-node-hello:latest
+echo $DOCKER_HOST
+
