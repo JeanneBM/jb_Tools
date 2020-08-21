@@ -213,10 +213,10 @@ reset - odrzuca zmiany dokonane w wybranym obszarze repozytorium (working direct
 - git reset <ref><plik> - przywraca stan stagingu wzgledem wybranej referencji lub commita. Domyslnie <ref>=HEAD
 
 git reset 
---soft 	 odrzuca zmiany w git directory (odwrotność git commit)
---mixed* 	 --soft + odrzuca zmiany w staging (odwrotność git add)
---hard 	 --mixed + odrzuca zmiany w katalogu roboczym
---mixed* 	 odrzuca plik ze stagingu
+--soft 	 	odrzuca zmiany w git directory (odwrotność git commit)
+--mixed* 	--soft + odrzuca zmiany w staging (odwrotność git add)
+--hard 	 	--mixed + odrzuca zmiany w katalogu roboczym
+--mixed* 	odrzuca plik ze stagingu
 
 
 git checkout <ref> <plik> - przywraca plik wzgledem wybranej referencji lub commita. Domyslnie <ref> = HEAD !!Nadpisuje zmiany dokonane w folderze roboczym!!
