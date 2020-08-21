@@ -179,9 +179,69 @@ git checkout <commit> - przelacza naglowek na wybrany commit
 git checkout <referencja> - przelacza naglowek na wybrana referencje
 git merge - laczy galezie; tworzy nowy commit z 2 rodzicami; odtwarza po kolei dokonane zmiany z dolaczanej galezi
 
+MERGE
+
 git merge - fast forward:
 - gdy galezie sie nie rozdzielaja, git merge uzyje "fast-forward" i nie utworzy nowego commitu
 - gdy na galezi, do ktorej dociagamy zmiany powstaja commity, zostanie utworzony nowy commit z 2 rodzicami
+
+
+git merge --no-ff - wylaczenie "fast-forward". zawsze nowy commit po merge
+git merge --no-commit - wylaczenie automatycznego tworzenia commitu, zadziala jedynie kiedy ma zostac stworzony nowy commit (nie zadziala gdy uaktywni sie "fast-forward")
+git merge --no-commit --no-ff - zmiany dodane jedynie na poziomie stagingu
+
+Merge conflict - 
+
+REBASE
+
+rebase:
+- sluzy do laczenia ze soba galezi
+- tworzy nowe commity z rodzicem, na ktory wskazuje HEAD 
+- odtwarza po kolei zmiany dokonane na dolaczanej galezi
+- usuwa dolaczana galaz
+
+Merge vs Rebase
+
+- Merge Commit - Tworzony jest jeden nowy commit; stare commity nie zostaja zmienione
+- Brand New Commit - Tworzone jest tyle nowych commitow , ile dolaczanej galezi; stare commity sa usuwane.
+
+
+RESET
+
+reset - odrzuca zmiany dokonane w wybranym obszarze repozytorium (working directory, staging, commit history) pod wzgledem wybranej referencji lub commita
+
+- git reset <ref><plik> - przywraca stan stagingu wzgledem wybranej referencji lub commita. Domyslnie <ref>=HEAD
+
+git reset 
+--soft 	 odrzuca zmiany w git directory (odwrotność git commit)
+--mixed* 	 --soft + odrzuca zmiany w staging (odwrotność git add)
+--hard 	 --mixed + odrzuca zmiany w katalogu roboczym
+--mixed* 	 odrzuca plik ze stagingu
+
+
+git checkout <ref> <plik> - przywraca plik wzgledem wybranej referencji lub commita. Domyslnie <ref> = HEAD !!Nadpisuje zmiany dokonane w folderze roboczym!!
+
+REVERT
+
+revert:
+- tworzy nowy commit, ktory odwraca zmiany dokonane w wybranym commicie
+- uzyteczny, gdy chcemy zachowac historie zmian – np. przy wspolnej pracy na jednej galezi lub pomiedzy wersjami
+
+git reset vs revert:
+- revert - tworzy nowy commit, ktorego rodzicem jest HEAD
+- reset - usuwa wszystkie commity od HEAD do wybranego commita
+
+Reset, Checkout, Revert - zastosowanie
+
+git reset 	 Odrzucenie zmian ze stagingu, commit history lub katalogu roboczego
+git reset 	 Odrzucenie pliku dodanego do stagingu
+git checkout 	 Przejście pomiędzy commitami lub referencjami
+git checkout 	 Odrzucenie zmian w katalogu roboczym w pojedynczym pliku
+git revert 	 Cofnięcie zmian dodanych do repozytorium zdalnego
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 
 
