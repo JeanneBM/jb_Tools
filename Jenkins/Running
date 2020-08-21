@@ -1,0 +1,33 @@
+Jeszcze innym sposobem obejścia ekranu odblokowania jest skopiowanie stanu UpgradeWizard do najnowszej wersji InstallUtil, 
+dodanie pliku install.runSetupWizard z zawartością „false” i zaktualizowanie config.xml installStateName z NOWEGO na RUNNING.
+
+##
+PATH:
+docker exec -it jenkins bash
+sed -i s/NEW/RUNNING/ /var/jenkins_home/config.xml
+echo 'false' > /var/jenkins_home/jenkins.install.runSetupWizard
+cp /var/jenkins_home/jenkins.install.UpgradeWizard.state /var/jenkins_home/jenkins.install.InstallUtil.lastExecVersion
+exit
+docker restart jenkins
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+W celach informacyjnych jest to polecenie, którego używam do uruchamiania Jenkinsa:
+
+##
+PATH:
+docker run --rm --name jenkins --network Host -u root -d -v jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkinsci/blueocean:1.16.0
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+Będziesz także chciał zaktualizować konfigurację za pomocą głównego adresu URL:
+
+##
+PATH:
+echo "<?xml version='1.1' encoding='UTF-8'?><jenkins.model.JenkinsLocationConfiguration><jenkinsUrl>http://<IP>:8080/</jenkinsUrl></jenkins.model.JenkinsLocationConfiguration>" > jenkins.model.JenkinsLocationConfiguration.xml
+exit
+docker restart jenkins
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
