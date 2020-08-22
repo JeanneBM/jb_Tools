@@ -6,7 +6,9 @@ jest przechwytywana i emulowana przez hipernadzorcę. Hipernadzorca decyduje, kt
 na zasobach sprzętowych, a które należy emulować. W niektórych systemach operacyjnych hipernadzorca jest nazywany menedżerem maszyn wirtualnych 
 (ang. virtual machine manager).
 
-Dodatkową funkcją, jaką pełni hipernadzorca jest pośredniczenie w przekazywaniu przerwań pomiędzy wirtualnym systemem a zasobami sprzętowymi i ewentualna emulacja urządzenia po przyjęciu przerwania.
+Dodatkową funkcją, jaką pełni hipernadzorca jest pośredniczenie w przekazywaniu przerwań pomiędzy wirtualnym systemem a zasobami sprzętowymi i ewentualna 
+emulacja urządzenia po przyjęciu przerwania.
+
 Klasyfikacja
 
 Według Roberta P. Goldberga istnieją dwa typy hipernadzorców:
