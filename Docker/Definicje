@@ -1,0 +1,17 @@
+
+
+obraz (ang. image) – z niego tworzony kontener, jak klasa tworzonych instancji kontenerow
+
+warstwa obrazu (ang. image layer) – warstwy powstaja w wyniku wykonywania czynnosci takich jak: instalacja pakietu, kopiowanie danych, 
+                                    ustawienie zmiennej srodowiskowej; sa dostepne jedynie do odczytu i to z nich skladaja sie obrazy
+                        
+kontener (ang. container) – jest to uruchomiona instancja obrazu Dokera; Zawiera aplikacje wraz z wszystkimi jej zaleznosciami, pozwalając na uruchomienie 
+                            jej jako izolowany proces w przestrzeni uzytkownika w systemie operacyjnym  hosta; moze  znajdowac  sie  w  jednym  z  nastepujacych  
+                            stanow: created, restarting, running, removing, paused, exitedidead
+                      
+demon/serwerdockera (ang. docker  daemon/server) – usluga dzialająca w tle na hoscie; zarzadza budowa, dzialaniem i dystrybucja kontenerow Dockera
+
+klient  dockera (ang. docker  client) – narzedzie typu wiersz  poleceń (ang. command-line  tool); pozwala uzytkownikowi na interakcje z demonem/serweremDockera
+
+Docker Hub – publiczny rejestr obrazow Dockera, zawiera duza liczbe gotowych do uzycia obrazow
+
