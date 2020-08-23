@@ -23,10 +23,37 @@ klient  dockera (ang. docker  client) – narzedzie typu wiersz  poleceń (ang. 
 
 Docker Hub – publiczny rejestr obrazow Dockera, zawiera duza liczbe gotowych do uzycia obrazow
 
-ping 8.8.8.8
+ping 8.8.8.8    //sparwdzenie polaczenia
 sudo apt-get update
 sudo apt-get install -y docker.io
+
 service docker status|start|stop    //sprawdzenie statusu/uruchomienie/zatrzymanieDockera
+systemctl status|start|stopdocker.service
+
+Docker Machine:
+base=https://github.com/docker/machine/releases/download/v0.14.0 && curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine && sudo install /tmp/docker-machine /usr/local/bin/docker-machine
+
+KONTENERY:
+docker help
+docker pull<nazwa_obrazu[:tag]>
+docker images
+docker rmi <nazwa_obrazu[:tag]|IMAGE ID>[-f]
+docker create --name<nazwa_kontenera> <nazwa_obrazu[:tag]|IMAGE ID>
+docker start <nazwa_kontenera>
+docker run<nazwa_obrazu[:tag]>
+
+docker runalpine
+docker pull alpine
+docker create –name alpine_container alpine
+docker start alpine_container
+
+docker ps -a
+docker stop <NAME|CONTAINER ID>
+docker rm <NAME|CONTAINER ID>
+docker info
+
+docker run--name my_nginx-d -p 80:80nginx
+
 
 
 
