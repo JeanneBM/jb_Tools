@@ -1,3 +1,11 @@
+Docker to oprogramowanie open-source pozwalajace na automatyzacje procesu wdrozenia aplikacji. Koncepcja podobna do maszyn wirtualnych, ale duzo lzjesza. 
+Kontener Docker’a to opakowanie pozwalajace na uruchamianie pojedynczych procesow. Uruchamiane  sa  w  jadrze systemu operacyjnego hosta co objawia sie 
+minimalizacja dodatkowych narzutow na czas wykonania, ale tez zmniejszeniem bezpieczenstwa uruchamianego kodu. Dzieki wykorzystaniu minimalnej przestrzeni dyskowej 
+ich czas uruchamiania jest ekstremalnie szybki co powoduje, ze moga sluzyc do wykonywania krotkich zadan bedac wielokrotnie tworzone i usuwane (idea  mikro-serwisów).
+Komunikuja sie ze soba i z otoczeniem podobnie jak komputery w sieci lokalnej. Kazdy z nich posiada unikalny adres IP przypisany do wirtualnego interfejsu. 
+Kontenery najlepiej sprawdzaja sie w przypadku aplikacji bezstanowych, pozwalajac na latwe skalowanie horyzontalne. W przeciwnym razie stan aplikacji powinien 
+byc przechowywany na zewnatrz kontenera np. w bazie danych albo w systemie plikow – co jest niezalecane poniewaz wprowadza dodatkowe zaleznosci. 
+Bezstanowosc kontenerow bierze sie z faktu, ze podczas kazdego uruchamiania jest on odtwarzany z obrazu.
 
 
 obraz (ang. image) – z niego tworzony kontener, jak klasa tworzonych instancji kontenerow
