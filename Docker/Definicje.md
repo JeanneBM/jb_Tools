@@ -23,3 +23,11 @@ klient  dockera (ang. docker  client) – narzedzie typu wiersz  poleceń (ang. 
 
 Docker Hub – publiczny rejestr obrazow Dockera, zawiera duza liczbe gotowych do uzycia obrazow
 
+ping 8.8.8.8
+sudo apt-get update
+sudo apt-get install -y docker.io
+service docker status|start|stop    //sprawdzenie statusu/uruchomienie/zatrzymanieDockera
+
+
+
+
