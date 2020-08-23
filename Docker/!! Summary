@@ -1,1 +1,71 @@
+Konterner - wydzielona logicznie czesc systemu operacyjnego, ktora pozwala na pelna izolacje wszystkich procesow w niej zawartych
+
+Najwazaniejsze cechy konterenrow:
+- jednorazowosc (ang. disposability)
+- przechodniosc (ang. ephemerality)
+- przenosniosc (ang. portability) 
+- lekkosc (ang. lightness)
+- niezmiennosc (ang. immutability)
+- bezstanowosc (ang. statelessness)
+
+Obraz Dockera - lekki, automatyczny, zdatny do uruchomienia pakiet oprogramowania, ktory posiada w sobie wszystko, co potrzebne do utrzymania znajdujacej sie 
+w nim aplikacji, tj.:
+- kod aplikacji
+- runtime (srodowisko uruchomieniowe)
+- narzedzia systemowe
+- biblioteki systemowe
+- ustawienia aplikacji (np. pliki konfiguracyjne, zmienne srodowiskowe)
+
+
+docker run - utworz/uruchom komende w nowym kontenerze
+docker start - uruchom zatrzymany kontener
+docker stop - zatrzymaj kontener
+docker ps /ps -a - pokaz uruchomione kontenery/ pokaz wszystkie kontenery
+docker exec - uruchom komende w dzialajacym kontenerze
+docker rm - usun kontener
+
+docker logs - pokaz logi kontenera
+docker inspect - szczegoly danego zasobu Dockera
+docker info - informacje o wszystkich zasobach Dockera i ustawienia globalne
+
+docker imges - pokaz obrazy Dockera w systemie
+docker rmi - usun obraz
+docker pull - pobierz obraz (bez uruchomienia)
+docker push - wysylanie obrazu do repozytorium
+
+
+Montowanie zasobow do kontenera
+
+Domyslnie wszystkie dane utworzone w kontenerze sa zapisywane w jego obrebie:
+- wszystkie dane po usunieciu kontenera zostana utracone
+- przenoszenie danych z kontenera na hosta nie jest latwe
+
+Jest mozliwosc przenoszenia z kontenera do hosta dzieki:
+- wolumenom (ang. volumes)
+- bind mounts-om
+
+Wolumeny:
+- folder w formie hosta, ktory powinien byc zarzadzany tylko i wylacznie przez Dockera. 
+- zaden inny proces nie powinien moc modyfikowac tego folderu
+- domyslnie, w Linux, Docker przechowuje wolumeny w: /var/lib/docker/volumes/
+
+Komendy wolumenow:
+
+docker volume create - utworz wolumen
+docker volume ls - lista wolumenow
+docker volume rm - usun wolumen
+
+Najwazniejsze zalety wolumenu:
+- umozliwia montowanie wolumenu do wielu kontenerow jednoczesnie
+- latwy backup ( cp /var/lib/docker/volumes/<nazwa_woluemnu> )
+- umozliwia trzymanie wolumenow poza infrastruktura serwera
+- mozna montowac na Linux i Windows
+
+
+
+
+
+
+
+
 
