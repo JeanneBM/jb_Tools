@@ -54,7 +54,16 @@ docker info
 
 docker run--name my_nginx-d -p 80:80nginx
 
+docker run -d --name topdemo ubuntu /usr/bin/top -b
+docker run ubuntu bash-c  "echo 'Docker is okey' > /tmp/docker-ok.txt"
 
+Dockerfile:
+FROM ubuntu
+CMD ["/bin/echo", "hello world"]
+
+docker build –t <nazwa_obrazu> .
+docker images
+docker run <nazwa_obrazu>
 
 
 
