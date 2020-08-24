@@ -1,3 +1,5 @@
+Hypervisor
+
 Opis działania
 
 Ponieważ wirtualizator pozwala maksymalnej ilości procesów wirtualnego systemu operacyjnego wykonywać swoje instrukcje bezpośrednio na zasobach sprzętowych, 
