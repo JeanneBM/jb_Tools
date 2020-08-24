@@ -2,3 +2,11 @@ https://www.youtube.com/watch?v=9qrgY2Dw30g | Git i GitHub – podstawy ⌨️ h
 
 https://www.youtube.com/watch?v=D6EI7EbEN4Q | #git Czym jest Git? - Kurs gita po polsku #1/12
 
+tworzenie repozytorium z terminala 
+https://stackoverflow.com/questions/2423777/is-it-possible-to-create-a-remote-repo-on-github-from-the-cli-without-opening-br
+~$ mkdir projectname
+~$ cd projectname
+~$ git init
+~$ touch file1
+~$ git add file1
+~$ git commit -m 'first commit'
