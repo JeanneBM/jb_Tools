@@ -241,6 +241,52 @@ git revert 	 Cofnięcie zmian dodanych do repozytorium zdalnego
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
+ZDALNE REPOZYTORIA:
+
+remote - zdalne repozytorium; mozna laczyc sie jednoczesnie
+origin - domyslna nazwa repozytorium, z ktorego dociagane sa zmiany; tworzona przy git clone
+upstream - galaz w zdalnym repozytorium, ktora jest powiazana z galezia w repozytorium lokalnym 
+downstream - galaz w repozytorium lokalnym dla powiazanej galezi w repozytorium zdalnym (relacja jak wyzej z punktu widzenia zdalnego repozytorium)
+
+Komendy:
+
+git remote add - ddoawanie nowego zdalnego repozytorium
+git remote rm - usuwanie zdalnego repozytorium
+git remote rename - zmien nazwe zapisanemu zdalnemu repozytorium
+git remote -v - wyswietl zapisane zdalne repozytoria
+
+Podstawowe pliki w repo:
+
+.gitignore - lista plikow, ktore git powinien ingorowac
+LICENCE - licencja
+README.md (.rst) - plik z instrukcja obslugi/opisem tego, co znajduje sie w repozytorium
+CHANGELOG.md - lista zmian w projekcie
+
+.gitignore
+Lista ignorowanych plikow:
+- dotyczy jedynie plikow, ktore nie byly dotad sledzone;
+- uzywa wzorca prawie identycznego do znakow globalnych 
+- lista czytana jest od gory do dolu; ostatni wpis nadpisuje poprzednie 
+- sciezki plikow (w kolejnosci czytania - nizsze nadpisuje wyzsze):
+	- plik wskazany przez core.excludesFile w .gitconfig
+	- plik w repozytorium: .git/info/exclude
+	- plik w repozytorium: .gitignore
+	
+* - zastepuje dowolny ciag znakow; w sciezce - bez podkatalogow
+** - zastepuje dowolny ciag znakow; w sciezce - rowniez podkatalogi
+? - zastepuje pojdeynczy znak dowolnym znakiem
+! - negacja wyrazenia
+[abc] - zastepuje pojedynczy znak znakiem a,b lub c
+[a-z] - zastepuje pojedynczy znak mala litera alfabetu
+\ - Esc, pozwala na uzycie danego znaku "doslownie"
+/ - koniec nazwy katalogu
+
+Wzorce moga byc tez uzywane zamiennie do nazw plikow i katalogow np. przy git add.
+
+Dodawanie wszystkich zmian:
+- git add * - rozwija * poprzez shell i dodaje wszystkie pliki i foldery w biezacym katalogu; dodaje rowniez pliki niesledzone; nie dodaje plikow ukrytych
+- git add . - znak "." wskazuje na katalog, w ktorym sie znajdujemy, ktory nie jest w zaden sposob rozwijany; nie dodaje plikow sledzonych; dodaje pliki ukryte
+
 
 
 
