@@ -86,7 +86,7 @@ Najczesciej:
 - dev - najnowsze zmiany
 
 Galezie lokalne:
-git branch <branch> - tworzenie nowej
+git branch <branch> - tworzenie nowej galezi
 git checkout <branch> - przejdz na galaz
 git branch --list - lista dostepnych galezi
 git branch -d <branch> - usun
