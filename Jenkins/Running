@@ -44,6 +44,21 @@ sudo ufw default deny
 Domyślne zasady incoming zmieniono na 'deny'
 (zaktualizuj odpowiednio swoje reguły)
 
-sudo iptables -L
+sudo iptables -L 
+
+====================================
+sudo ufw enable
+sudo ufw default deny
+sudo iptables -L 
+====================================
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+docker run -d --name jenkins -p 8880:8080 -p 50000:50000 -v /home/panda/jenkins:/var/jenkins_home jenkins/jenkins
+
+docker exec -it jenkins /bin/bash - wejscie do kontenera w terminalu
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
