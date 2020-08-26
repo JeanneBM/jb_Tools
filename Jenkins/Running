@@ -60,5 +60,8 @@ docker exec -it jenkins /bin/bash - wejscie do kontenera w terminalu
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
+docker container run -p 8081:8081 -p 8082:8082 --rm -v ~/Artifactory:/var/opt/jfrog/artifactory -d --name myjfrog docker.bintray.io/jfrog/artifactory-pro 
 
+useradd -u 1030 artifactory 
+chown -R artifactory:artifactory /home/panda/artifactory 
 
