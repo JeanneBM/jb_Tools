@@ -44,7 +44,7 @@ Jest mozliwosc przenoszenia z kontenera do hosta dzieki:
 - wolumenom (ang. volumes)
 - bind mounts-om
 
-Wolumeny:
+Wolumeny: -v, --volume
 - folder w formie hosta, ktory powinien byc zarzadzany tylko i wylacznie przez Dockera. 
 - zaden inny proces nie powinien moc modyfikowac tego folderu
 - domyslnie, w Linux, Docker przechowuje wolumeny w: /var/lib/docker/volumes/
@@ -62,6 +62,12 @@ Najwazniejsze zalety wolumenu:
 - mozna montowac na Linux i Windows
 
 
+Bind-mounts: --mount
+- folder w systemie hosta, ktory jest udostepniany kontenerom Dockera
+- podobne do wolumenow, roznice: 
+    - nie ma stalej sciezki, ale moze byc przechowywany  w dowolnym miejscu na hoscie oraz moze byc modtfikowany przez inne procesy
+    - folder musi istniec przed jego podlaczeniem (mountem) do kontenera
+    
 
 
 
