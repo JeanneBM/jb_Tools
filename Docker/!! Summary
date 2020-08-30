@@ -69,7 +69,8 @@ Bind-mounts: --mount
     - folder musi istniec przed jego podlaczeniem (mountem) do kontenera
     
 
-
+docker run -d --name jenkins -p 8880:8080 -p 50000:50000 -v /home/panda/jenkins:/var/jenkins_home jenkins/jenkins
+docker exec -it jenkins /bin/bash - wejscie do kontenera w terminalu
 
 
 
