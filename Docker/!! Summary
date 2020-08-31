@@ -72,6 +72,34 @@ Bind-mounts: --mount
 docker run -d --name jenkins -p 8880:8080 -p 50000:50000 -v /home/panda/jenkins:/var/jenkins_home jenkins/jenkins
 docker exec -it jenkins /bin/bash - wejscie do kontenera w terminalu
 
+Opcja -v, --volume 
+
+- host:kontener:opcje
+sciezka do pliku : sciezka do kontenera : zaawanasowane ustawienia
+
+- bind-mount
+docker run -d --name asia -v host:kontener ubuntu:latest
+
+- wolumen
+docker run -d --name asia -v <nazwa_wolumenu>:/kontener ubuntu:latest
+
+
+Opcja --mount
+
+- 'type=<type>, source=<source>, dst=<destination>...'
+typ mounta:bind,volume,tmpfs, sciazka do hosta=sciezka do kontenera, zaawansowane ustawienia
+
+- bind-mount
+docker run -d --name asia --mount type=bind,source=host,dst=/kontener ubuntu:latest
+
+- wolumen
+docker run -d --name asia --mount source=<nazwa_wolumenu>,dst=kontener ubuntu:latest
+
+
+Sesja interaktywna z kontenerem:
+- umozliwia przekazanie wszystkich strumeni STDIN, STDOUT, STDERROR do konsoli uruchomieniowej, w ktorej wykonano komende 
+- docker run -it <obraz> /bin/bash
+- docker exec -it <kontener> /bin/bash
 
 
 
