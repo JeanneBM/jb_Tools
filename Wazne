@@ -9,3 +9,34 @@ RUN apt-get update -y && apt-get install curl openjdk-11-jdk git maven -y
 RUN adduser --disabled-password --gecos "" jenkins
 RUN curl -fsSL https://get.docker.com/ | sh
 
+version: '3'
+services:
+jenkins:
+image: jenkins/jenkins
+container_name: jenkins
+ports:
+- "8880:8080"
+- "50000:50000"
+volumes:
+- /home/panda/jenkins:/var/jenkins_home
+
+docker-compose.yml:
+
+version: '3’
+
+services:
+jenkins:
+image: jenkins/jenkins:${TAG}
+
+version: "3"
+services:
+jenkins:
+build: .
+ubuntu:
+image: ubuntu:18.04
+depends_on:
+- ”jenkins”
+
+docker-compose -f docker-compose.prod.yml up
+
+
