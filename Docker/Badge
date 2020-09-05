@@ -39,64 +39,7 @@ docker run python-hello-world
 docker tag python-hello-world joannademo/python-hello-world
 docker push joannademo/python-hello-world
 
-
-Objectives
-
-When you finish this course, you should understand:
-
-    What containers are and their benefits
-    How to find and run Docker containers from the Docker Hub
-    How to create your first Docker container and understand the layering and union file system
-    The best practices when developing Dockerfiles
-    How to solve problems of orchestration: reconciliation, scaling, high availability, and service discovery
-    Some of the tools that can help you run highly available applications in production, such as the IBM Container service
-
-
-Prerequisites
-
-You don't need to know anything about containers to take this course, and no extensive programming experience is required. However, you must know how to run command-line tools from your workstation.
-
-If you don't have Docker already, you need install Docker Community Edition (CE) or use the use Play-with-Docker for all the labs in this course. Docker installations are available from store.docker.com for your Mac, Windows, or Linux machine.
-
-This course shows you how to install Docker.
-
-You must also have a Docker Hub account to complete Lab 3. If you don't already have one, go to Play-with-Docker and follow the prompts to create an account.
-
-
-Course labs
-
-By completing these labs, you'll get hands-on experience creating your first Docker container. Each lab is followed by a lab solution video in case you have questions or can't complete the lab.
-
-Lab 1: Run your first container and learn how to inspect it. Explore the Docker Hub and discover common images ready to be run.
-
-Lab 2: Create a custom Docker Image built from a Dockerfile and push it to a central registry where it can be pulled to be deployed on other environments. Learn about the union file system and copy-on-write, and how they help you deliver applications faster.
-
-Lab 3: Deploy containers using Docker swarm and learn how Docker Swarm helps solve problems such as reconciliation, scaling, high availability and service discovery. In this lab, you'll use Play-with-Docker for a multi-node cluster rather than use your locally installed Docker.
-
-
-Grading policy
-
-The minimum passing mark for the course is 80% with the following weights:
-
-    60%: Final exam
-    40%: All lab quizzes
-
-The only grade that matters is the overall grade for the course.
-
-The final exam has a 1-hour time limit.
-
-Attempts allowed per question: 
-
-        One attempt for True/False questions
-        Two attempts for any question other than True/False
-
-Clicking Final Check for each question means that your submission is final.  You will not be able to resubmit your answer for that question ever again.
-
-You cannot retake any exams.
-
-Check your grades in the course at any time by clicking the Progress tab.
-
-=====================================================================================================================================================================================================
+================================================================================================================================================================
 
 1.
 Install Docker or use Play-With-Docker
