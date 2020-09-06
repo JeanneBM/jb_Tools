@@ -1,0 +1,155 @@
+Cykl zycia oprogramowania - czas od tworzenia pomyslu programu do calkowitego wylaczenia dla uzytkownikow
+
+1. Faza koncepcji
+2. Faza wymagan //inaczej analizy
+3. Faza projektowania
+4. Faza implementacji 
+5. Faza testow // moze trafic do implementacji
+6. Faza pielegnacji// moze trafic do implementacji
+7. Faza wycofania
+
+1. Faza koncepcji:
+* po co? 
+* jak?
+
+2. Faza wymagan/analizy:
+* dla kogo?
+* jak/kiedy/gdzie ma dzialac?  //model przypadkow uzycia
+
+3. Faza projektowania:
+* jak ma dzialac technicznie: logika systemu, architektura, interfejsy, abstrakcje obiektow
+
+4./5./6. Fazy implementacji, testow, pielegnacji:
+* pisanie kodu, testowanie, wdrazanie na systemach klienta, wsparcie systemu dla klienta
+
+7. Faza wycofania:
+* calkowite odlaczenie i usuniecie oprogramowania
+
+
+Metodyka tworzenia oprogramowania:
+- sposob odtwarzania cyklu zycia
+- Waterfall i Agile Software Development
+- metodyki tlumacza co nalezy robic, aby osiagnac okreslony efekt
+
+Frameworki:
+- zbior metod, ktory opisuje jak wykonac okreslone prace 
+- Agile m.in.:
+	- Scrum
+	- Kaban
+	- Extreme Programming
+
+===========================================================================================================
+
+Waterfall(Kaskadowy):
+
+- wyrazne, jasno sprecyzowane (na poczatku procesu) fazy, ktore koncza sie swoim produktem, tzw. kamienie milowe (milestone)
+- wymaga szczegolowego planowania
+- pomylki bardzo kosztowne 
+- dostarczenie produktu trwa dlugo
+- udzial klienta ograniczony tylko do niektorych faz
+
+1. Planowanie
+2. Analiza
+3. Projektowanie
+4. Implementacja
+5. Produkt
+
+===========================================================================================================
+
+Agile (Zwinny):
+- najczestszy Framework to Scrum:
+	- dwutygodniowe Sprinty:
+		- programisci dostarczaja mozliwie najmniejsze gotowe elementy skladowe produktu
+- proces nie wymaga silnej fazy planowania:
+	- dynamiczny 
+	- rozwija sie wraz z potrzebami klienta (User Story)
+	
+- dostarcza oprogramowanie szybko:
+	- ale wymaga dyscypliny od programistow i liderow
+
+1. Planowanie
+2. Analiza-Projektowanie-Implementacja
+3. Produkt
+
+===========================================================================================================
+
+CI: Continuous Integration:
+
+- ciagla integracja
+- praktyka tworzenia i dostarczania kodu do repozytorium oraz weryfikacja zmian poprzez zbudowanie programu i wykonanie m.in. testow jednostkowych 
+- cykl kod i weryfikacja w jak najkrotszych interwalach
+
+- metodologia ciaglych zmian
+- usprawniona wspolpraca programistow 
+- pelna automoatyzacja budowania i testowania kodu
+- mniej konfliktow w kodzie
+
+Wymagania CI:
+- programisci musza napisac testy jednostkowe
+- kod dostarczany od razu po wykonaniu
+- wymaga oprogramowania do sledzenia zmian kodu (SCM np. Git)
+- wymaga oprogramowania do integrowania testow w ramach budowania programu
+
+Zalety CI:
+- mniej bledow u klienta
+- krotszy czas reakcji programisty na blad
+- mniej koflikto integracyjnych
+- obnizony koszt testow
+
+===========================================================================================================
+
+CD: Continuous Delivery
+
+- praktyka dostarczania zbudowanego i przetestowanego kodu do klienta w sposob automatyczny
+- naturalne dopelnienie CI
+
+- dodatkowe testy automatyczne
+- dowolna czestotliwosc dostarczania paczek
+- zautomatyzowany proces dostarczania kodu
+
+Wymagania CD:
+- mocno rozwiniety CI
+- zaawansowana automatyzacja budowania i testowania
+- srodowiska programistyczne, testowe i produkcyjne jak najbardziej blisko
+
+Zalety CD:
+- znacznie czestsze dostarczanie kodu
+- wiecej iteracji a mniej zgod
+- brak przygotowan do kazdego releasu (instrukcje deploymentu, rollbacku itp.)
+
+===========================================================================================================
+
+CD: Continuous Deployment
+
+- praktyka dostarczania nowej wersji aplikacji na serwery produkcyjne bez udzialu ani zgody czlowieka
+- dopelnienie CD
+
+- brak przestojow w pracy aplikacji
+- wykrycie bledu przerywa proces dostarczania kodu
+
+Wymagania CD:
+- w pelni sprawny CD^1
+- automatyczne testy pokrywajace najczestsze bledy
+- dokumentacja zmian musi nadazac za zmianami, a najlepsza bylaby generowana automatycznie
+
+Zalety CD:
+- brak przestojow aplikacji podczas budowy i dostarczania nowej wersji
+- wieksza wykrywalnosc bledow a mniejsze ich konsekwencje
+- ciagle dostarczanie poprawek i usprawnien dla klienta
+
+===========================================================================================================
+
+CI/CD/CD w praktyce
+
+https://www.atlassian.com/continuous-delivery/principles/continuous-integration-vs-delivery-vs-deployment
+
+
+
+
+
+
+
+
+
+
+ 
