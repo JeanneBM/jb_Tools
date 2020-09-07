@@ -40,3 +40,45 @@ depends_on:
 docker-compose -f docker-compose.prod.yml up
 
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+version: '3'
+
+services:
+        jenkins:
+                image: jenkins/jenkins
+                container_name: jenkins
+                ports:
+                - "8880:8080"
+                - "50000:50000"
+                volumes:
+                - /home/panda/jenkins:/var/jenkins_home
+                networks:
+                - docker_network
+        ubuntu:
+                container_name: ubuntu2
+                build: /home/panda/docker/ubuntu
+                volumes: /var/run/docker.sock:/var/run/docker.sock
+                command: java -jar agent.jar -jnlpUrl http://192.168.44.44:8880/computer/Slave/slave-agent.jnlp -secret f9ddd91e86873955bd952e315a15997f74f3b0076b21c5a3d653a9ecc8a755ea -workDir "/home/"
+                depends_on:
+                - jenkins
+                networks:
+                - docker_network
+
+networks:
+        docker_network:
+                driver:bridge
+
+
+Dockerfile:
+
+FROM ubuntu:18.04
+WORKDIR /home
+COPY agent.jar
+RUN apt-get update -y && apt-get install curl openjdk-11-jdk git maven -y
+RUN adduser --disabled-password --gecos "" jenkins
+RUN curl -fsSL https://get.docker.com/ | sh
+CMD tail -f /dev/null
+
+
+
