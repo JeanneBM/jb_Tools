@@ -1,7 +1,16 @@
-Selenium Hub:
-http://192.168.44.44:4444/grid/console 
 Jenkins:
 http://192.168.44.44:8880/
+docker run -d --name jenkins -p 8880:8080 -p 50000:50000 -v /home/panda/jenkins:/var/jenkins_home jenkins/jenkins
+
+Selenium Hub:
+http://192.168.44.44:4444/grid/console 
+- docker run -p -d 4444:4444 --name selenium-hub --network=docker_network  selenium/hub
+
+- docker run -d --name selenium-node --network=docker_network -e HUB_HOST=selenium-hub  selenium/node-firefox
+
+JFrog Artifactory:
+http://192.168.44.44:8082
+docker container run -p 8081:8081 -p 8082:8082 --rm -v ~/Artifactory:/var/opt/jfrog/artifactory -d --name myjfrog docker.bintray.io/jfrog/artifactory-pro 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
