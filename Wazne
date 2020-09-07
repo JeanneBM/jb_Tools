@@ -140,7 +140,6 @@ services:
 networks:
         docker_network:
                 driver: bridge
-panda@vagrant:~/pandaenv/compo
 
 ========================================================================================================
 
