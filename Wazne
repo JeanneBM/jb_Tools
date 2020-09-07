@@ -82,6 +82,7 @@ RUN curl -fsSL https://get.docker.com/ | sh
 CMD tail -f /dev/null
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
+Env
 
 version: '3'
 
@@ -138,4 +139,14 @@ networks:
         docker_network:
                 driver:bridge
 
+Dockerfile:
+
+FROM ubuntu:18.04
+WORKDIR /home
+COPY agent.jar .
+RUN apt-get update -y && apt-get install curl openjdk-11-jdk git maven -y
+RUN adduser --disabled-password --gecos "" jenkins
+RUN curl -fsSL https://get.docker.com/ | sh
+RUN usermod -aG docker jenkins
+CMD tail -f /dev/null
 
