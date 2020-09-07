@@ -1,0 +1,242 @@
+Jenkins - instalacja:
+
+1. wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+2. sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+3. sudo apt-get update
+4. sudo apt-get install jenkins
+
+
+Jenkins: lokalna instancja
+
+- http://127.0.0.1:8080
+
+Jenkins – klucz bezpieczenstwa
+
+- cat /var/lib/Jenkins/secrets/initialAdminPassword
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Jenkins:
+- najpopularniejszy reprezentant CI/CD tools 
+- do centralnego sterowania oraz automatyzowania procesow budowania i wdrazania aplikacji
+
+Alternatywy: TeamCity, GitLab, Bamboo, Azure DevOps i in.
+
+Zalety Jenkinsa:
+- darmowy (licencja MIT)
+- sterowany z GUI oraz CAC
+- wysoce konfigurowalny
+- ogrom dodatkow
+
+Pojecia:
+
+Master:
+	 - centralny proces (i serwer) Jenkinsa 
+	 - przechwuje pliki konfiguracji, pluginy, artefakty
+	 - renderuje GUI
+	 - podstawowy agent i executor
+	 
+Slave:
+	- maszyna rozszerzajaca srodowisko Jenkinsa
+	- zdolna do uruchomienia Jobow/Projektow i Pipeline'ow
+	- dodatkowy agent i executor
+	
+Agent/Node:
+	- serwer lub kontener podlaczony do Jenkinsa, ktory moze wykonywac zadania przez niego zlecone
+	- dodatkowy executor
+	- Master i Slave sa agentami
+
+Executor: 
+	- kazdy agent moze miec 0 lub wiecej executorow 
+	- oznacza jak wiele zadan zleconych przez uzytkownika moze byc na nim wykonywana jednoczesnie
+	
+Workspace:
+	- folder w Agencie, w ktorym wykonywane sa wszystkie zadania oraz domyslnie przechowywane artefakty
+	- moze byc czyszczony na zyczenie uzytkownika
+	
+Folder: 
+	- logiczny kontener z informacjami o Projektach lub Pipelinach na macierzystym systemie operacyjnym Jenkinsa
+	
+Project/Job:
+	- definicja zadan (okreslonych przez uzytkownika) do wykonania 
+	- np. zbudowanie i opublikowanie kodu aplikacji
+	
+Step:
+	- pojedyncze zadanie Projektu/Joba/Pipeline'a
+	
+Trigger:
+	- warunek uruchomienia nowego Projektu lub Pipeline'a 
+	
+Build:
+	- wynik pojedynczego uruchomienia Projektu/Joba
+	
+Artefakt:
+	- niezmienny (immutable) plik wygenerowany w trakcie Builda 
+	- przechowywany na Masterze do pozniejszego wykorzystania
+	
+Upstream:
+	- Projekt, Job lub Pipeline, ktory po zakonczeniu wywoluje nastepny Projekt, Job lub Pipeline
+		
+Downstream:
+	- Projekt, Job lub Pipeline, ktorego warunkiem uruchomienia jest zakonczenie innego Projekt, Joba lub Pipeline'a
+	
+Pipeline:
+	- opis cyklu CI/CD zdefiniowany przez uzytkownika
+
+Stage:
+	- wyrozniona czesc Pipeline'a identyfikujaca odmienne zestawy zadan w ramach calosci: np. Build, Test i Deploy
+	
+Plugin:
+	- program rozszerzajacy funkcjonalnosc Jenkinsa
+	
+
+===========================================================================================================
+
+Menu Jenkinsa:
+
+* New Item - nowy Job/Projekt
+* People - uzytkownicy
+* Build History - wykaz Jobow/Projektow z wynikiem ich run'ow; nie widac usunietych
+* Manage Jenkins - glowny folder konfiguracyjny calego Jenkinsa - do zmian, instalacji/odinstalacji pluginow i konfigurowania ich
+* Credentials - zarzadzanie danymi dostepowymi do zewnetrznych serwisow (m.in.SSH), z ktorymi laczy sie Jenkins
+
+Ustawienia:
+* Configure System - ustawienia globalne i najwazniejsze ustawienia dodanych pluginow
+* Configure Global Security - globalne ustawienia bezpieczenstwa - dostapy, uprawnienia users'ow do Jenkinsa
+* Configure Credentials - dodawanie i konfiguracja zestwow uprawnien do laczenia sie z zewnetrznymi aplikacjami (Github, Docker, Artifactory itd.)
+* Global Tool Configuration - lokalizacje dodatkowych narzedzi sprzezonych z Jenkinsem
+* Reload Configuration from Disk - przywraca konfiguracje Jenkinsa z dysku, odrzucajac wersje zapisana obecnie w RAM
+* Manage Plugins - dodawanie/usuwanie/wlaczanie/wylacznie/aktualizacja pluginow
+* System Information - wszystkie informacje systemowe Jenkina i jego pluginow, m.in. zmienne srodowiskowe, wersje itp.
+* System Log - dokladny log systemowy Jenkinsa
+* Load Statistics - statystyki zuzycia zasobow Node'ow
+* Jenkins CLI - uruchomienie konsoli Jenkinsa do zarzadzania spoza GUI
+* Script Console - uruchomienie skryptu Groovy dla weryfikacji jego dzialania z poziomu Jenkinsa
+* Manage Nodes - dodawanie/usuwanie/nazywanie/konfiguracja Node'ow
+* About Jenkins - informacje o wersji/licencji/pluginach Jenkinsa
+* Manage Old Data - zarzadzanie niepotrzebnymi plikami (np. stare wersje pluginow)
+* Manage Users - dodawanie/usuwanie/modyfikacja user'ow Jenkinsa
+* Prepare for Shutdown - zamkniecie/zrestartowanie Jenkinsa bez wplywania na dzialajace Joby/Projekty
+
+===========================================================================================================
+
+Freestyle Job:
+- podstawowa forma tworzenia Jobow w Jenkinsie
+- zawiera wszystkie podstawowe elementy pelnego potoku CI/CD
+
+Job:
+
+* General/Build Environment - ustawienia srodowiska uruchamiania
+* Source Code Management/Build - dodawanie rzeczywistego skryptu do budowania
+* Build Triggers/Post-build Actions - co ma sie wykonac po skonczeniu builda
+
+===========================================================================================================
+
+Autentykacja:
+
+Zabezpieczenie Jenkinsa: 
+- domyslnie wszyscy uzytkownicy maja pelny dostep
+- metody autentykacji:
+	- Security Realm:
+		* Delegate to servlet container - nieaktualne
+	 	* Jenkins' own user database - najpopularniejsze; wlasna baza Jenkinsa   <<--
+		* Allow users to sing up - nowi uzytkownicy moga tworzyc konta
+		* LDAP - wykorzystuje istniejacy serwer LDAP
+		* Unix user/group database - korzysta z zabezpieczen Unixa i kopiuje uzytkownikow do Jenkinsa
+ 
+- metody autoryzacji:
+	- Authorization:
+		* Anyone can do anything - nie uzywac; najbardziej niebezpieczna
+		* Legacy mode - admin moze wszystko, reszte read-only
+		* Logged-in users can do anything - zalogowani moga wszystko; niebezpieczne 
+		* Allow anonymous read access - niezalogowani widza zadania i ustawienia
+		* Matrix-based security - samodzielne ustalanie kto gdzie ma dostep	<<-- najpopularniejsze 
+		* Project-based Matrix Authorization Strategy - dodatkowe ograniczenie do poszczegolnych Jobow/Projektow <<-- najpopularniejsze
+		
+===========================================================================================================
+
+Dodawanie kluczas SSH:
+- Credentials -> System -> Global credentials -> Add Credentials -> SSH Username with private key -> Enter directly w Private Key -> Add -> id_rsa -> OK
+
+Uzywanie klucza w Jobie:
+- Source Code Management -> Git -> repo URL -> wybierz wczesniej stworzony klucz SSH
+
+Automatyczna instalacja Mavena:  		// umozliwia wykonanie tego samego builda, na wielu wersjach mavena, w celu m.in. sprawdzenia kompatybilnosci
+- Global Tool Configurations -> Name: auto_maven -> Install automatically -> Version
+
+Dodanie pluginu:	//pozwala na automatyczne wstrzykniecie przygotowanego settings.xml do kazdej nowej wersji mvn; dodatkowo na wstrzykiwanie hasla do serwera na biezaco, zamiast przechowywania go w formie jawnego tesktu w konfiguracji
+- Plugin Manager -> Managed Scripts -> zaznacz checkbox -> Install without restart
+
+
+Modyfikowanie ustawien Mavena:
+- Managed files -> Maven settings.xml -> nazwa -> komentarz -> ServerID:artifactory -> Credentialials: credentiale dla Artifactory
+
+Tworzenie widoku:
+- + -> List View -> nazwa:Maven -> Jobs:Maven
+
+===========================================================================================================
+
+Buildy sparametryzowane:
+- w Jenkins mozna dodac parametr do kazdego uruchamianego Joba
+- w ten sposob, mozna mozna podac dynamicznie dane do uruchamianego Joba, w ktorym beda uzyte
+
+Rodzaje parametrow:
+- Boolean Parameter - logiczny; wykonaj tylko jezeli zaznaczyles prawde
+- Choice Parameter - wyboru; lista opcji
+- Credentials Parameter - uprawnien; wybor uprawnien do uzycia w buildzie
+- Password Paramenter - hasla; przekazuje wpisane (szyfrowane) haslo do builda
+- Run Parameter - uruchomienia; wybor innego joba o nazwie lub nr buildu
+- String Parameter - string; wprowadzenie danych do zmiennej
+
+Ustawienie parametru do Joba:
+
+this project is parametrized -> String Parameter -> name:Branch -> Default Value: master
+
+ 
+===========================================================================================================
+
+Ustawienie nowego Brancha:
+- Branches to build -> Branch Specifier -> $Branch
+
+Dodanie build step:
+-> Build -> Invoke top-level Maven targets -> Maven Version:auto_maven; Goals:install -> Advanced... -> Settings file:Provided settings.xml; Provided Settings:MavenSettings; Global Settings File: Use default maven global settings
+
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Wspolna siec dla kontenerow:
+- wewnetrzna lacznosc miedzy kontenerami:
+	- z wykorzystaniem sieci mostkowanej
+	- o nazwie docker_network
+		docker network create -d bridge docker_network
+		
+Selenium Grid:
+- samodzielny serwer proxy
+- umozliwia niezalezne i rownolegle uruchamianie testow Selenium na wielu platformach i przegladarkach
+- Selenium Hub i Selenium Node
+
+Selenium Hub:
+- centralny serwer
+- punkt dostepowy dla aplikacji do testowania, centrala zbierajaca zapytania i zarzadzajaca wezlami testujacymi Node'ami
+- docker run -p -d 4444:4444 --name selenium-hub --network=docker_network  selenium/hub
+
+Selenium Node:
+- jeden lub wiecej dedykowanych wezlow (serwerow, maszyn wirtualnych lub kontenerow), ktore uruchamiaja testy Selenium
+- zazwyczaj oznaczany nazwa przegladarki
+- docker run -d --name selenium-node --network=docker_network -e HUB_HOST=selenium-hub  selenium/node-firefox
+
+
+
+
+	
+ 
+
+
+
+
+
+
+
+
+
+
