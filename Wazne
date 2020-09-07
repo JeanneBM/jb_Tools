@@ -94,18 +94,20 @@ services:
                 - "8880:8080"
                 - "50000:50000"
                 volumes:
-                - /home/panda/jenkins:/var/jenkins_home
+                - ../volumes/jenkins:/var/jenkins_home
                 networks:
                 - docker_network
         ubuntu:
                 container_name: ubuntu2
-                build: /home/panda/docker/ubuntu
-                volumes: /var/run/docker.sock:/var/run/docker.sock
+                build:
+                        context: ../dockerfiles/slave
+                volumes:
+                        - /var/run/docker.sock:/var/run/docker.sock
                 command: java -jar agent.jar -jnlpUrl http://192.168.44.44:8880/computer/Slave/slave-agent.jnlp -secret f9ddd91e86873955bd952e315a15997f74f3b0076b21c5a3d653a9ecc8a755ea -workDir "/home/"
                 depends_on:
-                - jenkins
+                        - jenkins
                 networks:
-                - docker_network
+                        - docker_network
 
         artifactory:
                 image: docker.bintray.io/jfrog/artifactory-oss:latest
@@ -116,11 +118,11 @@ services:
                         - "8081:8081"
                         - "8082:8082"
                 networks: 
-                - docker_network
+                        - docker_network
         
         selenium_hub:
                 image: selenium/hub
-                container_name: :seleniumhub
+                container_name: seleniumhub
                 ports:
                         - "4444:4444"
                 networks: 
@@ -137,7 +139,8 @@ services:
 
 networks:
         docker_network:
-                driver:bridge
+                driver: bridge
+panda@vagrant:~/pandaenv/compo
 
 ========================================================================================================
 
