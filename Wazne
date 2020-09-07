@@ -139,6 +139,8 @@ networks:
         docker_network:
                 driver:bridge
 
+========================================================================================================
+
 Dockerfile:
 
 FROM ubuntu:18.04
@@ -150,3 +152,15 @@ RUN curl -fsSL https://get.docker.com/ | sh
 RUN usermod -aG docker jenkins
 CMD tail -f /dev/null
 
+========================================================================================================
+start.sh
+
+#!/bin/bash
+
+useradd -u 1030 artifactory
+chown -R artifactory:artifactory ./volumes/artifactory
+useradd -u 1000 jenkins 
+chown -R jenkins:jenkins ./volumes/jenkins
+# chmod +x ./volumes/jenkins/copy_reference_file.log
+cd compose
+docker-compose up -d --build
