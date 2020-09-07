@@ -8,8 +8,7 @@ Najwazaniejsze cechy konterenrow:
 - niezmiennosc (ang. immutability)
 - bezstanowosc (ang. statelessness)
 
-Obraz Dockera - lekki, automatyczny, zdatny do uruchomienia pakiet oprogramowania, ktory posiada w sobie wszystko, co potrzebne do utrzymania znajdujacej sie 
-w nim aplikacji, tj.:
+Obraz Dockera - lekki, automatyczny, zdatny do uruchomienia pakiet oprogramowania, ktory posiada w sobie wszystko, co potrzebne do utrzymania znajdujacej sie w nim aplikacji, tj.:
 - kod aplikacji
 - runtime (srodowisko uruchomieniowe)
 - narzedzia systemowe
@@ -44,10 +43,11 @@ Jest mozliwosc przenoszenia z kontenera do hosta dzieki:
 - wolumenom (ang. volumes)
 - bind mounts-om
 
-Wolumeny: -v, --volume
+Wolumeny:
 - folder w formie hosta, ktory powinien byc zarzadzany tylko i wylacznie przez Dockera. 
 - zaden inny proces nie powinien moc modyfikowac tego folderu
 - domyslnie, w Linux, Docker przechowuje wolumeny w: /var/lib/docker/volumes/
+
 
 Komendy wolumenow:
 
@@ -62,15 +62,19 @@ Najwazniejsze zalety wolumenu:
 - mozna montowac na Linux i Windows
 
 
-Bind-mounts: --mount
-- folder w systemie hosta, ktory jest udostepniany kontenerom Dockera
-- podobne do wolumenow, roznice: 
-    - nie ma stalej sciezki, ale moze byc przechowywany  w dowolnym miejscu na hoscie oraz moze byc modtfikowany przez inne procesy
-    - folder musi istniec przed jego podlaczeniem (mountem) do kontenera
-    
 
-docker run -d --name jenkins -p 8880:8080 -p 50000:50000 -v /home/panda/jenkins:/var/jenkins_home jenkins/jenkins
-docker exec -it jenkins /bin/bash - wejscie do kontenera w terminalu
+Bind-mounts:
+	- jak wolumen: folder w systemie hosta udostrepniany kontenerom Dockera, ale: 
+		- nie ma stalej sciezki, 
+		- moze byc przechowywany w dowolnym miejscu na hoscie, 
+		- podatny na modyfikacje przez inne procesy
+		- folder musi istniec przed jego podlaczeniem (mountem) do kontenera
+
+Dwie opcje:
+	- -v, --volume
+	- --mount
+	
+===========================================================================================================
 
 Opcja -v, --volume 
 
@@ -83,8 +87,9 @@ docker run -d --name asia -v host:kontener ubuntu:latest
 - wolumen
 docker run -d --name asia -v <nazwa_wolumenu>:/kontener ubuntu:latest
 
+===========================================================================================================
 
-Opcja --mount
+Opcja --mount:	
 
 - 'type=<type>, source=<source>, dst=<destination>...'
 typ mounta:bind,volume,tmpfs, sciazka do hosta=sciezka do kontenera, zaawansowane ustawienia
@@ -95,11 +100,271 @@ docker run -d --name asia --mount type=bind,source=host,dst=/kontener ubuntu:lat
 - wolumen
 docker run -d --name asia --mount source=<nazwa_wolumenu>,dst=kontener ubuntu:latest
 
+===========================================================================================================
 
 Sesja interaktywna z kontenerem:
 - umozliwia przekazanie wszystkich strumeni STDIN, STDOUT, STDERROR do konsoli uruchomieniowej, w ktorej wykonano komende 
 - docker run -it <obraz> /bin/bash
 - docker exec -it <kontener> /bin/bash
+	
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Dockerfile:
+- plik zawierajacy zestaw instrukcji, na podstawie ktorych Docker tworzy nowy obraz
+- inaczej - "przepis" na obraz kontenera, ktory trzeba zbudowac do obrazu i uruchomic przez docker run
+	Dockerfile - build - obraz - run - kontener
+	
+Docker build:
+
+docker build [opcje] path/kontekst			
+
+- docker build - buduje obraz na podtswie Dockerfile wraz z kontekstem/sciezka 
+- [opcje] - dodatkowe, nieobowiazkowe np. nazwa obrazu
+- path - odnisnik URL do zasobow zdalnych, np. repozytorium z Git
+- kontekst - sciezka do folderu na lokalnej maszynie
+
+
+Kontekst Docker builda:
+- wszystkie elementy ulokowane we wlasnym katalogu (tzw. "sciezce" - ang. path), ktore moga byc wykorzystywane w 
+procesie budowania (np. do wkopiowania go do obrazu).
+
+- moze przyjac forme sciezki wzglednej (".", "..") i bezwzglednej (pelna sciezka od katalugu /)
+
+
+Dockerfile Suplement:
+
+* FROM - uzycie bazowego obrazu (musi byc zawsze na poczatku kazdego Dockerfile'a)
+* RUN - uruchomienie komendy podczas budowania obrazu
+* ENV - ustawienie zmiennej srodowiskowej wewnatrz kontenera
+* USER - ustawienie uzytkownika operujacego wewnatrz obrazu
+
+* VOLUME - podlaczenie loklanego katalogu do kontenera 
+* WORKDIR - wskazanie katalogu roboczego obrazu
+* CMD - uruchomienie komendy przy starcie kontenera lub ustawienie domyslnych parametrow[argumenty uruchomieniowe kontenera]
+* ENTRYPOINT - uruchomienie komendy przy starcie kontenera 
+
+* ADD - dodawanie plikow do kontenera z lokalnego systemu plikow/adresu zewnetrznego 
+* COPY - skopiowanie pliku do kontenera z lokalnego systemu plikow
+* ARG - dodwanie argumentow do kontenera
+* EXPOSE - przekierowanie portu hosta na kontener
+
+* ONBUILD - dodanie instrukcji uruchamianej przy uzywaniu nowo utworzonego obrazu jako bazowego w innych Dockerfilach
+* STOPSIGNAL - ustawienie waryosci sygnalu (np. kill-9) wysylanego przy wyjsciu z kontenera
+* HEALTHCHECK - poinformowanie demona dockerowego w jaki sposob sprawdzic stan procesu glownego kontenera
+* SHELL - ustawienie domyslnej powloki(lub dodatkowych funkcji powloki) uzywanej w kontenerze 
+
+
+Skladnia uruchomieniowa:
+
+FROM 		FROM <image>[AS <nazwa>] 	FROM <image>[:<tag>][AS<nazwa>]
+RUN		<komenda> 			["exec", "param1", "param2"]
+ENV		<key><value>			<key>=<value>
+USER		<user>[:<group>]		<UID>[:<GID>]
+			
+VOLUME 	["/path"]
+WORKDIR	/path/to/workdir
+CMD		["exec","param1", "param2"]	command param1 param2
+ENTRYPOINT	["exec","param1", "param2"]	command param1 param2
+
+ADD		[--chown=<user>:<group>]<src>... <dest>	[--chown=<user>:<group>]["<src>",... "<dest>"]
+COPY		[--chown=<user>:<group>]<src>... <dest>	[--chown=<user>:<group>]["<src>",... "<dest>"]
+ARG		<name>[=<default value>]
+EXPOSE		<port>[<port>/<protocol>...]
+
+
+ADD czy COPY:
+- oba kopiuja pliki z lokalnego systemu plikow do kontenera
+
+- COPY: 	-nie rozpakowuje archiwow
+		
+- ADD:		- automatycznie rozpakowuje archiwa (np. tar.gz)
+		- kopiuje pliki z URL bezposrednio do kontenera
+		
+		
+ENTRYPOINT czy CMD:
+- moga wydawac sie identyczne:
+	- CMD:
+		- sluzy do:
+			- ustawiania tzw. domyslnych wartosci parametrow 
+			- uruchmiania komendy w nowo utworzonym obrazie
+		- powinien wystapic tylko raz w Dockerfile'u:	
+			- interpreter uruchamia tylko i wylacznie ostatnie wystapienie CMD
+		- moze zostac nadpisane komenda dynamicznie wpisana przy uzyciu docker run:
+			- np. docker run -it <obraz> /bin/bash
+	
+ENTRYPOINT to uruchomienie - CMD to uzupelnienie.
+
+W praktyce:
+- Dockerfile powinien posiadac przynajmniej jedno CMD lub ENTRYPOINT
+- ENTRYPOINT oznacza, ze kontener ma kazdorazowo wykonac jakas prace przy uruchomieniu
+- CMD powinno byc jako opcja zdefiniowania parametrow/argumentow dla komendy w ENTRYPOINT
+- CMD bedzie nadpisane jesli uruchomi sie kontener z dodatkowymi argumentami/parametrami
+
+
+Korelacja ENTRYPOINT/CMD
+
+https://docs.docker.com/engine/reference/builder/#enhttps://docs.docker.com/engine/reference/builder/#entrypointtrypoint
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Docker Compose:
+- https://docs.docker.com/compose/reference/
+
+- pozwala na tworzenie odizolowanych, wielokontenerowych srodowisk aplikacyjnych za pomoca jednej komendy 
+
+- do tworzenia srodowisk zlozonych z kilku kontenerow tzw. serwisow
+- docker-compose.yml - plik, w ktorym tworzy sie konfiguracje danego srodowiska wielokontenerowego
+- umozliwia kontrolowanie zarowno kontenerow oraz rzeczy z nimi powiazanych np. wolumenow
+- srodowiskami mozna zarządzać podobnie jak pojedynczymi kontenerami (komenda docker-compose ma bardzo podobną składnie jak komenda docker)
+- umozliwia na dynamiczne przekazywanie parametrow do kontenera poprzez zmienna:
+	- mozna np. okreslic etykiete (tag) obrazu, z ktorego powinien skorzystac docker-compose
+	- kilka opcji:
+		- bezposrednie odwolanie do zmiennej srodowiskowej
+		- wprowadznie zmiennej srodowiskowej w komendzie lub docker-compse.yml
+		- uzycie pliku .env definiujacego wartosci domyslne dla zmiennych
+			* Ustawiajac zmienna srodowiskowa:
+			export TAG=latest
+
+			* Wewnatrz docker-compose.yml:
+			version: '3’
+			 services:
+			  jenkins:
+			   image: jenkins/jenkins:${TAG}
+			
+			* Ustawiając zmienną w komendzie:
+			docker-compose run -e TAG=latest <komenda>  //(<komenda> zostanie wykonana w kontenerze)
+
+			* .env
+			Plik docker-compose.yml:
+			version: ‚3’
+			 services:
+			  jenkins:
+			   image: jenkins/jenkins:${TAG }
+			   
+			Plik .env:
+			TAG=latest
+
+
+
+Docker compose - najwazniejsze komendy:
+
+* up /up -d - tworzenie i startowanie kontenera | przelacznik -d ->> uruchamia w tle i nie blokuje terminala (detached mode)
+* ps - lista uruchomionych kontenerow
+* logs - logi
+
+* run <service><cmd> - uruchomienie komendy <cmd> w serwisie <service>
+* stop - zatrzymanie serwisow
+* down - zatrzymuje i usuwa wszystko (--containers, --networks,--images,--volumes)
+* scale - ustawienie liczby kontenerow dla serwisu 
+* top - uruchomione procesy
+
+===========================================================================================================
+
+docker-compose.yml:
+
+version: '3'					// wersja trzecia
+services:					// serivices to kontenery
+jenkins:					// aktywnym serwisem jest jenkins 
+image: jenkins/jenkins				// ktory uruchamiamy z obrazu jenkins/jenkins - mozna tez przez build:<Dockerfile>
+container_name: jenkins			// opcje uruchomienia 
+ports:						// opcje uruchomienia 
+- "8880:8080"					// opcje uruchomienia 	
+- "50000:50000"				// opcje uruchomienia 
+volumes:					// opcje uruchomienia 
+- /home/panda/jenkins:/var/jenkins_home	// opcje uruchomienia 
+
+===========================================================================================================
+
+.env:
+- uzycie wielu plikow ze zmiennymi naraz 
+
+- np. jenkins.env:
+
+docker-compose.yml:
+
+version: '3'
+ jenkins:				// podsiec: jenkins_default -> tworzy kontener jenkins, dolacza go do podsieci jenkins; jenkins jak hostname
+  env-file:
+  - jenkins.env			
+  image: jenkins/jenkins:${TAG}	
+
+===========================================================================================================
+
+Hierarchia:
+- jesli ta sama zmeinna mam rozne wartosci, jest uszeregowana sekwencja czytania zmiennych - wyzsze wazniejsze:
+
+1. docker-compose.yml
+2. zmienne ustawione w shellu
+3. .env
+4. Dockerfile
+
+===========================================================================================================
+
+Podsieci w compose:
+- domyslnie compose dolacza serwisy do jednej wspolnej podsieci: <nazwa_projektu>_default
+
+version: "3"
+ services:
+  jenkins:
+   build: .
+  ubuntu:
+   image: ubuntu:18.04
+   
+ - tworzy podsiec: jenkins_default 
+ - tworzy kontener jenkins i dolacza go do podsieci jenkins; jenkins jak hostname
+ - tworzy kontener ubuntu i dolacza do podsieci jako ubuntu
+
+// oba kontenery potrafia odwolac sie do siebie nawzajem poprzez nadane im nazwy - odpowiednio jenkins oraz ubuntu
+
+===========================================================================================================
+
+Uruchamianie kontenerow w ustalonej kolejnosci:
+
+- depends_on
+
+version: "3"
+ services:
+  jenkins:
+   build: .
+  ubuntu:
+   image: ubuntu:18.04
+   depends_on:
+   - ”jenkins” // ubuntu po uruchomieniu jenkins
+   
+- UWAGA! Klauzula depends_on korzysta z nazwy serwisu, nie nazwy kontenera.
+
+===========================================================================================================
+
+Nadpisywanie docker-compose.yml:
+- zamiast uzywania domyslnych nazw docker-compose.yml wskazanie pliku do odczytu:
+	docker-compose -f docker-compose.prod.yml up
+	
+- uruchamia tylko wskazane pliki - wszystkie pozostale w katalogu pomija
+- skuteczna metoda uruchamiania specyficznych konfiguracji dla zblizonych do siebie srodowisk np. dev i prod
+
+--------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
