@@ -1,3 +1,8 @@
+Selenium Hub:
+http://192.168.44.44:4444/grid/console 
+Jenkins:
+http://192.168.44.44:8880/
+
 FROM openjdk:11.0
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
