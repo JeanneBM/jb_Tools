@@ -191,15 +191,13 @@ import java.net.URL;
 import java.net.MalformedURLException;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 
@@ -217,8 +215,8 @@ public class PandaApplicationSeleniumTest {
     public void startup() throws InterruptedException, MalformedURLException
     {
         DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-        capabilities.setPlatform(Platform.LINUX;
-        driver = new RemoteWebDriver(new URL( "http://192.168.44.44:4444/wd/hub", capabilities);
+        capabilities.setPlatform(Platform.LINUX);
+        driver = new RemoteWebDriver(new URL( "http://192.168.44.44:4444/wd/hub"), capabilities);
 
         //Pamietaj, ze aplikacja Spring musi dzialac! Tzn. musi byc wlaczona.
         driver.get(String.format("http://ubuntu:%d/", port));
