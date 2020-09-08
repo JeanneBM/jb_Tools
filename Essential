@@ -57,6 +57,13 @@ docker-compose -f docker-compose.prod.yml up
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
+SLAVE UP:
+
+- mkdir ubuntu
+- mkdir /home/panda/docker/ubuntu
+- docker-compose up
+- mv agent.jar ubuntu
+
 docker-compose.yml:
 
 version: '3'
@@ -84,7 +91,7 @@ services:
 
 networks:
         docker_network:
-                driver:bridge
+                driver: bridge
 
 
 Dockerfile:
