@@ -36,7 +36,7 @@ java.yml
             name: default-jre
             update_cache: yes
     become: true
-    
-playbook-ansible java.yml
+
+ansible-playbook java.yml
 
 
