@@ -51,9 +51,16 @@ Zwiekszanie liczby adresow na pol i podniesc do 255 i po podpowiedzi:
 10.0.128.0/17
 
 ===========================================================================================================
+w Security Group 
+TCP:8080
 
+#!/bin/bash
+echo 'Hello, World from AWS instance with following IP config:<br>' > index.html
+ifconfig | grep "inet "| awk '{print $2"<br>"}' >> index.html
+nohup busybox httpd -f -p 8080 &
+sleep 1
 
-
+===========================================================================================================
 
 
 
