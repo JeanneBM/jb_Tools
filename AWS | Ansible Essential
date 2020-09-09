@@ -17,3 +17,26 @@ ansible_ssh_private_key_file=./Klucz.pem
 
 ===========================================================================================================
 
+
+ansible local --connection=local
+ansible all --connection=local -m ping
+
+ansible local --connection=local -m shell -a 'touch panda'
+
+===========================================================================================================
+
+java.yml
+
+---
+- name: Install JAVA
+  hosts: aws
+  tasks:
+  - name: Install java
+    apt:
+            name: default-jre
+            update_cache: yes
+    become: true
+    
+playbook-ansible java.yml
+
+
