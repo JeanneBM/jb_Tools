@@ -65,10 +65,13 @@ ip:8080 //Hello World
 ===========================================================================================================
 
 curl http://169.254.169.254/latest/meta-data/public-ipv4 
+https://github.com/awslabs/aws-shell
 
 curl -v ip:8080/index.html
 
+watch -n 1 curl http://LoadBalancerPanda-19428356.us-east-2.elb.amazonaws.com
 
+===========================================================================================================
 
 
 
