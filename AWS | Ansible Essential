@@ -13,6 +13,7 @@ ansible all --connection=local -m ping
 ansible local --connection=local -m shell -a 'touch panda'
 
 ===========================================================================================================
+
 /etc/ansible/hosts
 
 [local]
@@ -38,5 +39,33 @@ java.yml
     become: true
 
 ansible-playbook java.yml
+
+===========================================================================================================
+
+pip3 install flask
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
