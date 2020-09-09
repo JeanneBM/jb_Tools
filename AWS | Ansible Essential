@@ -60,9 +60,11 @@ ifconfig | grep "inet "| awk '{print $2"<br>"}' >> index.html
 nohup busybox httpd -f -p 8080 &
 sleep 1
 
+ip:8080 //Hello World 
+
 ===========================================================================================================
 
-
+curl http://169.254.169.254/latest/meta-data/public-ipv4 
 
 
 
