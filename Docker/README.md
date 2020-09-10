@@ -1,3 +1,5 @@
+https://docs.openstack.org/nova/latest/user/support-matrix.html
+
 Hypervisor
 
 Opis działania
