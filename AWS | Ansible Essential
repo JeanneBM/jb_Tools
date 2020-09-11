@@ -20,7 +20,7 @@ ansible local --connection=local -m shell -a 'touch panda'
 localhost
 
 [aws]
-ip
+3.129.71.25
 
 [aws:vars]
 ansible_user=ubuntu
@@ -70,6 +70,22 @@ https://github.com/awslabs/aws-shell
 curl -v ip:8080/index.html
 
 watch -n 1 curl http://LoadBalancerPanda-19428356.us-east-2.elb.amazonaws.com
+
+===========================================================================================================
+
+MVN z Roles
+
+---
+- name: Install JAVA
+  hosts: aws
+  roles:
+  - gantsign.maven
+  tasks:
+  - name: Install java
+    apt:
+            name: default-jre
+            update_cache: yes
+    become: true
 
 ===========================================================================================================
 
