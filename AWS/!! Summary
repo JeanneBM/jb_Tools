@@ -1,0 +1,179 @@
+Przetwarzanie w chmurze:
+- zestaw uslug, pozwalajacy na dostarczanie zasobow IT (np. serwerow, mocy obliczeniowej, zasobow sieciowych)
+- poprzez Internet 
+- "na zyczenie" klienta
+
+W zaleznosci od potrzeb, chmura pozwala na stworzenie dodatkowej warstwy abstrakcji, oddzielajacej uzytkownika od zarzadzania wybranymi elementami infrastruktury.
+
+Najpopularniejsi dostawcy:
+- AWS
+- Microsoft Azure
+- Google Cloud
+- Alibaba Cloud
+- inni
+
+IaaS:
+- Infrastructure as a Service
+- dostawca odpowiada tylko i wylacznie za czesc infrastrukturalna
+- uzytkownik instaluje i odpowada w jaki sposob
+
+PaaS:
+- Platform as a Service
+- dostarczenie infrastruktury wraz z narzedziami do stworzenie dowolnego, dedykowanego i nowoczesnego srodowiska aplikacyjnego
+
+
+SaaS:
+- Software as a Service
+- cala aplikacja jest utrzymywana przez dostawce
+- zadana czesc odpowiedzialnosci, za jej prawidlowe funkcjonowanie, nie stoi po stronie uzytkownika
+
+
+===========================================================================================================
+
+Zarzadzanie w lokalnej serwerowni:
+
+Samodzielne zarzadzanie:
+- Aplikacja
+- Dane
+- Runtime
+- Middleware
+- System Operacyjny
+- Wirtualizacja
+- Serwery
+- Storage
+- Networking
+
+Dostawca zarzadza:
+- 		 //null
+
+----------------------------------------
+
+IaaS:
+
+Samodzielne zarzadzanie:
+- Aplikacja
+- Dane
+- Runtime
+- Middleware
+- System Operacyjny
+
+Dostawca zarzadza:
+- Wirtualizacja
+- Serwery
+- Storage
+- Networking
+
+----------------------------------------
+
+Paas:
+
+Samodzielne zarzadzanie:
+- Aplikacja
+- Dane
+
+Dostawca zarzadza:
+- Runtime
+- Middleware
+- System Operacyjny
+- Wirtualizacja
+- Serwery
+- Storage
+- Networking
+
+----------------------------------------
+
+Saas:
+
+Samodzielne zarzadzanie:
+- 		 //null
+
+Dostawca zarzadza:
+- Aplikacja
+- Dane
+- Runtime
+- Middleware
+- System Operacyjny
+- Wirtualizacja
+- Serwery
+- Storage
+- Networking
+
+===========================================================================================================
+
+Rodzaje chmur:
+- Publiczna:
+	- zewnetrzny dostawca w pelni zarzadza serwerami
+	- najwygodniejsze i najbardziej ryzykowne
+
+- Prywatna: 
+	- serwery sa wlasnoscia firmy i posiadaja dedykowane osoby do ich zarzadzania
+	- tworzona jest dodatkowa warstwa abstrakcji oddzielajaca administracje od uzytkownikow wewnetrznych
+	- najbezpieczniejsze, ale wymaga wlasnego Data Center - drogo
+	
+- Hybryda:
+	- polaczenie publicznej i prywatnej
+	- przy odpwoiednim zarzadzaniu pozwala na zwiekszenie bezpieczenstwa w polaczeniu z mozliwoscia korzystania z uslug chmury publicznej 
+	
+- Multicloud:
+	-  wiele chmur publicznych jednoczesnie 
+	- optymalizacja zasobow i kosztow
+	- nabiera na popularnosci 
+	- narzedzia: Terraform, Cloud-Platform od Hashicorp
+	
+===========================================================================================================
+
+MAPA AWS (regiony i availability zones):
+- wile regionow
+- w kazdym regionie tzw. Availability Zones:
+	- miedzy Availability Zones jest low-latency, czyli wysoce zoptymalizowane opoznienie polaczenia
+- Local Zones:
+	- od niedawna 
+	- maja na celu zapewnienie bardzo niskiego "pingu" miedzy uzytkonikiem koncowym a chmura AWS
+- wszystkie Zones maja na celu zapewnienie niezawodnosci i stabilnosci w przydpaku, gdy ktorys z punktow ulegnie awarii
+
+
+
+AWS Budget - koszty:
+- My Billing Dashboard
+
+Free Tier:
+- za darmo na 12 miesiecy od zarejestrowania konta
+- pelny zakres serwisow z limitami ich darmowego uzycia:
+	https://aws.amazon.com/free
+	
+
+EC2:
+- Elastic Compute Cloud:
+- usluga dostarczaja moc obliczeniowa dla chmury
+- prosciej: maszyna wirtualna z pelna konfiguracja sieciowa
+- najprostszy sposob korzystania z AWS
+- Services -> EC2
+- gotowe konfiguracje w Launch Templates
+- tansze instancje w SPOT
+- Snapshoty:
+	- obrazy woluemnow mogace sluzyc za kopie zapasowe
+
+AMI:
+- Amazon Machine Image
+- obraz, na podstawie ktorego tworzymy nasza instancje
+
+EBS:
+- Elastic Block Storage
+- przestrzen dyskowa, ktora tworzymy dodatkowo, a nastepnie montujemy do naszej instancji
+
+EFS:
+- Elastic File System
+- jak EBS plus mozna montowac do wielu instancji jednoczesnie 
+- odpowiednik likunsowego NFS - Network File System
+
+User data:
+- skrypt uruchamiany przy starcie instancji
+- umozliwia wprowadzenie zmian juz przy starcie (np. pobranie danych, wystartowanie aplikacji)
+
+
+
+
+
+
+
+
