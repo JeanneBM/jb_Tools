@@ -255,3 +255,16 @@ public class PandaApplicationSeleniumTest {
         driver.quit();
     }
 }
+
+##################################################################old start.sh
+#!/bin/bash
+
+useradd -u 1030 artifactory
+chown -R artifactory:artifactory ./volumes/artifactory
+useradd -u 1000 jenkins 
+chown -R jenkins:jenkins ./volumes/jenkins
+chmod 777 ./volumes/jenkins
+cd compose
+docker-compose up -d --build
+
+###################################################################
