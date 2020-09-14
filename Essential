@@ -1,3 +1,5 @@
+plugin BlueOcean - dla ladnej wizualizacji pipeline'ow
+
 Jenkins:
 http://192.168.44.44:8880/
 docker run -d --name jenkins -p 8880:8080 -p 50000:50000 -v /home/panda/jenkins:/var/jenkins_home jenkins/jenkins
