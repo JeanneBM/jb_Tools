@@ -17,6 +17,8 @@ diff plik1 plik2 - porownywanie plikow | znajdowanie roznic w tresci
 git remote set-url origin https://github.com/ ... .git
 sudo git push -u origin feature/selenium-final
 
+artifactory: 
+admin:password
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 FROM openjdk:11.0
