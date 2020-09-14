@@ -19,6 +19,9 @@ sudo git push -u origin feature/selenium-final
 
 artifactory: 
 admin:password
+
+snippet
+git branch: 'feature/seleniumgrid', credentialsId: 'artifactory', url: 'https://github.com/JoannaDemo/panda_application1.git'
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 FROM openjdk:11.0
