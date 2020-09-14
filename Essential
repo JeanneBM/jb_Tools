@@ -13,6 +13,10 @@ http://192.168.44.44:8082
 docker container run -p 8081:8081 -p 8082:8082 --rm -v ~/Artifactory:/var/opt/jfrog/artifactory -d --name myjfrog docker.bintray.io/jfrog/artifactory-pro 
 
 diff plik1 plik2 - porownywanie plikow | znajdowanie roznic w tresci
+
+git remote set-url origin https://github.com/ ... .git
+sudo git push -u origin feature/selenium-final
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 FROM openjdk:11.0
