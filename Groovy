@@ -125,3 +125,57 @@ else
 println "Smutełek, nie lubicie Pand! :("
 }
 
+============================================================================
+
+def kot=2
+kot=3
+println kot
+
+
+def funkcja (zmienna1, zmienna2)
+{
+print zmienna1
+println zmienna2
+}
+funkcja("kot_", "pies")
+funkcja("mysz_", "chomik")
+
+
+def mapa = [1:"12", 2:"11"]
+println mapa
+
+/*
+if(mapa.contains("12"))
+{
+println "Tam jest 12."
+}
+*/
+
+def lista =["kot", "mysz", "pies"]
+println lista
+
+if(lista.contains("kot"))
+{
+println "Ala naprawde ma kota"
+}
+
+def text = "Ala ma kota!"
+if(text.contains("kot"))
+{
+println "Ala naprawde ma kota"
+}
+
+
+def lista2 = ["kot", "mysz", "pies"]
+lista.each {element-> println element}
+
+/*
+def mapa2 = [1:"kangur", 2:"tygrys", 3:"zombie"]
+mapa.each {klucz,wartosc -> println wartosc.join(",")}
+*/
+
+/*
+def lista3 = ["kot", "mysz", "pies"]
+while (true)
+{println element}
+*/
