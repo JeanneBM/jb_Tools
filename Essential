@@ -289,20 +289,20 @@ pipeline {
     agent{
         label 'Slave'
     }
+    
+    tools {
+        maven 'auto_maven'
+    }
 
     environment {
         IMAGE = readMavenPom().getArtifactId()
         VERSION = readMavenPom().getVersion()
     }
     
-    tools {
-        maven 'auto_maven'
-    }
-
     stages {
         stage('Clear running apps') {
             steps {
-                sh 'docker rm -f pandaapp || true’
+                sh "docker rm -f pandaapp || true"
                 }
             }
 
