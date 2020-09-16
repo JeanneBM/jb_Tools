@@ -283,3 +283,74 @@ cd compose
 docker-compose up -d --build
 
 ###################################################################
+
+pipeline {
+   
+    agent{
+        label 'Slave'
+    }
+
+    environment {
+        IMAGE = readMavenPom().getArtifactId()
+        VERSION = readMavenPom().getVersion()
+    }
+    
+    tools {
+        maven 'auto_maven'
+    }
+
+    stages {
+        stage('Clear running apps') {
+            steps {
+                sh 'docker rm -f pandaapp || true’
+                }
+            }
+
+        stage('Get Code') {
+            steps {
+                git branch: 'feature/seleniumgrid', credentialsId: '350814d5-69cb-4728-94ee-818d5fdd3d96', url: 'https://github.com/JoannaDemo/panda_application1'
+                    }
+        }
+        
+        stage('Build and JUnit') {
+            steps {
+                sh "mvn clean install"
+            }
+        }
+        
+        stage('Build Docker image’) {
+            steps {
+                sh "mvn package -Pdocker"
+            }
+        }
+
+        stage('Run Docker app') {
+            steps {
+                sh "docker run -d -p 0.0.0.0:8080:8080 --name pandaapp -t ${IMAGE}:${VERSION}"
+            }
+        }
+        
+        
+        stage('test Selenium') {
+            steps {
+                // 
+                sh "mvn test -Pselenium"
+            }
+        }
+        
+        stage('Deploy to Artifactory') {
+            steps {
+                configFileProvider([configFile(fileId: 'da5150e0-eb6e-41b2-ad8d-9feef186d5cc', variable: 'MAVEN_SETTINGS')]) {
+                sh "mvn -gs $MAVEN_SETTINGS deploy"}
+             }
+        }
+        
+    }
+    
+    post {
+        always { 
+            sh 'docker stop pandaapp’
+            deleteDir()
+        }
+    }
+}
