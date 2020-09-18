@@ -92,8 +92,27 @@ MVN z Roles
 sudo apt-get install python3-lxml
 
 
+===========================================================================================================
 
+K8S
 
+Definicja serwisu:
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: panda-application-deployment
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+    nodePort: 38080
+    protocol: TCP
+  selector:
+    app: panda-application-deployment
+  type: NodePort
+  
+  
 
 
 
