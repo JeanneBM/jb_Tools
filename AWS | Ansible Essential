@@ -112,10 +112,22 @@ spec:
     app: panda-application-deployment
   type: NodePort
   
-  
+kubectl create deployment panda --image=pandaacademy/webapp
+kubectl expose deployment/panda --type="NodePort" --port 8080
 
+kubectl create deployment panda --image=pandaacademy/webapp
+kubectl get pods -o wide
+kubectl describe pod panda-79df76d644-98hzq
+kubectl logs pod panda-79df76d644-98hzq
+kubectl logs panda-79df76d644-98hzq
+kubectl exec -it  panda-79df76d644-98hzq bash
+kubectl expose deployment/panda --type="NodePort" --port 8080
+kubectl get service
+kubectl describe pod panda
+kubectl describe deployment panda
+kubectl describe service panda
 
-
+http://192.168.33.33:10015/panda
 
 
 
