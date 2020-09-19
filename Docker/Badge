@@ -49,25 +49,24 @@ If you don't want to install Docker, skip this part and go to the next section "
 4. Install Docker Desktop.
 Use Play-With-Docker
 
-If you don't want to install Docker, an alternative is to use Play-With-Docker, which is a website where you can run terminals directly from your browser that have Docker installed.
-
-All of the labs for this course can be run on Play-With-Docker though it's recommended that you install Docker locally on your host so that you can continue your Docker journey when you're done with the course. To use Play-With-Docker, navigate to http://play-with-docker.com in your browser. Then, follow the instructions in each lab.
-
 2.
 Lab overview
 
-Containers are just a process (or a group of processes) running in isolation, which is achieved with Linux namespaces and control groups. Linux namespaces and control groups are features that are built into the Linux kernel. Other than the Linux kernel itself, there is nothing special about containers.
+Containers are just a process (or a group of processes) running in isolation, which is achieved with Linux namespaces and control groups. 
+Linux namespaces and control groups are features that are built into the Linux kernel. 
+Other than the Linux kernel itself, there is nothing special about containers.
 
-What makes containers useful is the tooling that surrounds them. The labs in this course use Docker, which has been the understood standard tool for using containers to build applications. Docker provides developers and operators with a friendly interface to build, ship, and run containers on any environment.
+What makes containers useful is the tooling that surrounds them. 
+The labs in this course use Docker, which has been the understood standard tool for using containers to build applications. 
+Docker provides developers and operators with a friendly interface to build, ship, and run containers on any environment.
 
-In the first part of this lab, run your first container, and learn how to inspect it. You will be able to witness the namespace isolation that you acquire from the Linux kernel.
+In the first part of this lab, run your first container, and learn how to inspect it. 
+You will be able to witness the namespace isolation that you acquire from the Linux kernel.
 
-After you run your first container, you can explore other uses of docker containers. You can find many examples of these on the Docker Store and can run several different types of containers on the same host, which allows you to see the benefit of isolation—where you can run multiple containers on the same host without conflicts.
+After you run your first container, you can explore other uses of docker containers. 
+You can find many examples of these on the Docker Store and can run several different types of containers on the same host, which allows you to see 
+the benefit of isolation—where you can run multiple containers on the same host without conflicts.
 
-You will use a few Docker commands in this lab. If interested, see the full documentation on available commands.
-Prerequisites
-
-You must have Docker installed or be using Play-with-Docker.
 
 3.
 Run a container
@@ -78,15 +77,24 @@ Use the Docker CLI to run your first container.
 
     & docker container run -t ubuntu top
 
-    You use the docker container run command to run a container with the Ubuntu image by using the top command. The -t flag allocates a pseudo-TTY, which you need for the top command to work correctly.
+    
+    You use the docker container run command to run a container with the Ubuntu image by using the top command. 
+    The -t flag allocates a pseudo-TTY, which you need for the top command to work correctly.
 
-    The docker run command first starts a docker pull to download the Ubuntu image onto your host. After it is downloaded, it will start the container. The output for the running container should look like this:
+    The docker run command first starts a docker pull to download the Ubuntu image onto your host. 
+    After it is downloaded, it will start the container. The output for the running container should look like this:
 
-    top is a Linux utility that prints the processes on a system and orders them by resource consumption. Notice that there is only a single process in this output: it is the top process itself. You don't see other processes from the host in this list because of the PID namespace isolation.
+    top is a Linux utility that prints the processes on a system and orders them by resource consumption. 
+    Notice that there is only a single process in this output: it is the top process itself. 
+    You don't see other processes from the host in this list because of the PID namespace isolation.
 
-    Containers use Linux namespaces to provide isolation of system resources from other containers or the host. The PID namespace provides isolation for process IDs. If you run top while inside the container, you will notice that it shows the processes within the PID namespace of the container, which is much different than what you can see if you ran top on the host.
+    Containers use Linux namespaces to provide isolation of system resources from other containers or the host. 
+    The PID namespace provides isolation for process IDs. 
+    If you run top while inside the container, you will notice that it shows the processes within the PID namespace of the container, 
+    which is much different than what you can see if you ran top on the host.
 
-    Even though we are using the Ubuntu image, it is important to note that the container does not have its own kernel. It uses the kernel of the host and the Ubuntu image is used only to provide the file system and tools available on an Ubuntu system.
+    Even though we are using the Ubuntu image, it is important to note that the container does not have its own kernel. 
+    It uses the kernel of the host and the Ubuntu image is used only to provide the file system and tools available on an Ubuntu system.
 
     Inspect the container:
 
@@ -94,23 +102,33 @@ Use the Docker CLI to run your first container.
 
     This command allows you to enter a running container's namespaces with a new process.
 
-    Open a new terminal. To open a new terminal connected to node1 by using Play-With-Docker.com, click Add New Instance on the left and then ssh from node2 into node1 by using the IP that is listed by node1, for example:
+    Open a new terminal. 
+    To open a new terminal connected to node1 by using Play-With-Docker.com, click Add New Instance on the left and then ssh from node2 into node1 by using 
+    the IP that is listed by node1.
 
     In the new terminal, get the ID of the running container that you just created:
 
     docker container ls 
      
 
-    Use that container ID to run bash inside that container by using the docker container exec command. Because you are using bash and want to interact with this container from your terminal, use the -it flag to run using interactive mode while allocating a psuedo-terminal:
+    Use that container ID to run bash inside that container by using the docker container exec command. 
+    Because you are using bash and want to interact with this container from your terminal, use the -it flag to run using interactive mode while 
+    allocating a psuedo-terminal:
 
     $ docker container exec -it b3ad2a23fab3 bash 
     root@b3ad2a23fab3:/#
 
-    You just used the docker container exec command to enter the container's namespaces with the bash process. Using docker container exec with bash is a common way to inspect a Docker container.
+    You just used the docker container exec command to enter the container's namespaces with the bash process. 
+    Using docker container exec with bash is a common way to inspect a Docker container.
 
-    Notice the change in the prefix of your terminal, for example,  root@b3ad2a23fab3:/. This is an indication that you are running bash inside the container.
+    Notice the change in the prefix of your terminal, for example,  root@b3ad2a23fab3:/. 
+    This is an indication that you are running bash inside the container.
 
-    Tip: This is not the same as using ssh to a separate host or a VM. You don't need an ssh server to connect with a bash process. Remember that containers use kernel-level features to achieve isolation and that containers run on top of the kernel. Your container is just a group of processes running in isolation on the same host, and you can use the command docker container exec to enter that isolation with the bash process. After you run the command docker container exec, the group of processes running in isolation (in other words, the container) includes top and bash.
+    Tip: This is not the same as using ssh to a separate host or a VM. You don't need an ssh server to connect with a bash process. 
+    Remember that containers use kernel-level features to achieve isolation and that containers run on top of the kernel. 
+    Your container is just a group of processes running in isolation on the same host, and you can use the command docker container exec to enter 
+    that isolation with the bash process. 
+    After you run the command docker container exec, the group of processes running in isolation (in other words, the container) includes top and bash.
 
     From the same terminal, inspect the running processes:
 
@@ -119,7 +137,8 @@ Use the Docker CLI to run your first container.
 
     You should see only the top process, bash process, and your ps process.
 
-    For comparison, exit the container and run ps -ef or top on the host. These commands will work on Linux or Mac. For Windows, you can inspect the running processes by using tasklist.
+    For comparison, exit the container and run ps -ef or top on the host. These commands will work on Linux or Mac. 
+    For Windows, you can inspect the running processes by using tasklist.
 
     root@b3ad2a23fab3:/# exit 
     exit
@@ -133,13 +152,17 @@ Use the Docker CLI to run your first container.
         User: Isolated view of users on the system.
         UTC: Set hostname and domain name per container.
 
-    These namespaces provide the isolation for containers that allow them to run together securely and without conflict with other containers running on the same system.
+    These namespaces provide the isolation for containers that allow them to run together securely and without conflict with other containers running 
+    on the same system.
 
     In the next lab, you'll see different uses of containers and the benefit of isolation as you run multiple containers on the same host.
 
-    Tip: Namespaces are a feature of the Linux kernel. However, Docker allows you to run containers on Windows and Mac. The secret is that embedded in the Docker product is a Linux subsystem. Docker open-sourced this Linux subsystem to a new project: LinuxKit. Being able to run containers on many different platforms is one advantage of using the Docker tooling with containers.
+    Tip: Namespaces are a feature of the Linux kernel. However, Docker allows you to run containers on Windows and Mac. 
+    The secret is that embedded in the Docker product is a Linux subsystem. Docker open-sourced this Linux subsystem to a new project: LinuxKit. 
+    Being able to run containers on many different platforms is one advantage of using the Docker tooling with containers.
 
-    In addition to running Linux containers on Windows by using a Linux subsystem, native Windows containers are now possible because of the creation of container primitives on the Windows operating system. Native Windows containers can be run on Windows 10 or Windows Server 2016 or later.
+    In addition to running Linux containers on Windows by using a Linux subsystem, native Windows containers are now possible because of the creation of container 
+    primitives on the Windows operating system. Native Windows containers can be run on Windows 10 or Windows Server 2016 or later.
 
     Clean up the container running the top processes:
 
