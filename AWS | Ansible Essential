@@ -1,5 +1,9 @@
 ssh -i Klucz.pem ubuntu@ip
 
+vagrant permissions
+chown $USER ~/.ssh/config
+chmod 644 ~/.ssh/config
+
 ===========================================================================================================
 
 /etc/ansible/hosts
