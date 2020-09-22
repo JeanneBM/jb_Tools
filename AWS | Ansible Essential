@@ -171,5 +171,144 @@ spec:
     app: panda-all
   type: NodePort
 
+===========================================================================================================
 
+Terraform:
+
+main.tf
+
+provider "aws" {
+    region = "us-east-1"
+}
+
+resource "aws_instance" "panda" {
+    ami = "ami-07ebfd5b3428b6f4d"
+    instance_type = "t2.micro"
+    key_name = "Klucz_Virginia"
+
+    connection {
+        host = "${self.public_ip}"
+        type = "ssh"
+        user = "ubuntu"
+        private_key = "${file("~/terra/Klucz_Virginia.pem")}"
+    }
+
+    provisioner "remote-exec" {
+        inline = [
+            "mkdir -p /home/ubuntu/katalog",
+            "echo 123 > /home/ubuntu/katalog/plik",
+            ]
+    }
+
+
+
+}
+
+
+terraform.tfstate
+
+{
+  "version": 4,
+  "terraform_version": "0.13.3",
+  "serial": 12,
+  "lineage": "b7422e54-574f-5ef6-8d5b-8538a7d497af",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "aws_instance",
+      "name": "panda",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "ami": "ami-07ebfd5b3428b6f4d",
+            "arn": "arn:aws:ec2:us-east-1:706803677216:instance/i-02fec4c7c7853765f",
+            "associate_public_ip_address": true,
+            "availability_zone": "us-east-1c",
+            "cpu_core_count": 1,
+            "cpu_threads_per_core": 1,
+            "credit_specification": [
+              {
+                "cpu_credits": "standard"
+              }
+            ],
+            "disable_api_termination": false,
+            "ebs_block_device": [],
+            "ebs_optimized": false,
+            "ephemeral_block_device": [],
+            "get_password_data": false,
+            "hibernation": false,
+            "host_id": null,
+            "iam_instance_profile": "",
+            "id": "i-02fec4c7c7853765f",
+            "instance_initiated_shutdown_behavior": null,
+            "instance_state": "running",
+            "instance_type": "t2.micro",
+            "ipv6_address_count": 0,
+            "ipv6_addresses": [],
+            "key_name": "Klucz_Virginia",
+            "metadata_options": [
+              {
+                "http_endpoint": "enabled",
+                "http_put_response_hop_limit": 1,
+                "http_tokens": "optional"
+              }
+            ],
+            "monitoring": false,
+            "network_interface": [],
+            "outpost_arn": "",
+            "password_data": "",
+            "placement_group": "",
+            "primary_network_interface_id": "eni-021ad71043c0c7b9f",
+            "private_dns": "ip-172-31-36-138.ec2.internal",
+            "private_ip": "172.31.36.138",
+            "public_dns": "ec2-18-232-134-152.compute-1.amazonaws.com",
+            "public_ip": "18.232.134.152",
+            "root_block_device": [
+              {
+                "delete_on_termination": true,
+                "device_name": "/dev/sda1",
+                "encrypted": false,
+                "iops": 100,
+                "kms_key_id": "",
+                "volume_id": "vol-09975d708be21b5ca",
+                "volume_size": 8,
+                "volume_type": "gp2"
+              }
+            ],
+            "secondary_private_ips": [],
+            "security_groups": [
+              "default"
+            ],
+            "source_dest_check": true,
+            "subnet_id": "subnet-40369e1f",
+            "tags": null,
+            "tenancy": "default",
+            "timeouts": null,
+            "user_data": null,
+            "user_data_base64": null,
+            "volume_tags": {},
+            "vpc_security_group_ids": [
+              "sg-73e9574c"
+            ]
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMCwidXBkYXRlIjo2MDAwMDAwMDAwMDB9LCJzY2hlbWFfdmVyc2lvbiI6IjEifQ=="
+        }
+      ]
+    }
+  ]
+}
+
+example.tfvars 
+
+security_group = "sg-73e9574c"
+aws_key_name = "Klucz_Virginia"
+ssh_key_path="~/terra/Klucz_Virginia.pem"
+
+terraform init
+terraform plan
+terraform apply
+terraform destroy
 
