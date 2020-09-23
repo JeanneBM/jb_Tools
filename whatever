@@ -58,3 +58,11 @@ Krzysiek_SToday at 7:12 PM
 https://github.com/PandaAcademy/panda_application -> branch feature/pipeline
 https://github.com/PandaAcademy/panda_env
 
+----
+[7:26 PM]
+1. Tworzymy katalog infrastructure
+[7:26 PM]
+2. Klonujemy repozytoria bedąc wewnątrz katalogu infrastructure
+[7:27 PM]
+3. Usuwamy w obu katalogach katalog .git (rm -rf .git)
+
