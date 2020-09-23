@@ -8,3 +8,50 @@ docker run -d -p 8080:80 nginx:alpine
 <username>deployment</username>
 <password>deployment</password>
 </server>
+
+1. docker rm -f $(docker ps -aq)(edited)
+
+1
+[5:46 PM]
+2. mkdir final (bedac w katalogu /home/panda)
+[5:47 PM]
+3. cd final
+[5:48 PM]
+4. Klonujemy 3 repozytoria - panda_env, panda_application, wasze własne
+[5:51 PM]
+5. cd panda_application/
+[5:51 PM]
+6.  git checkout feature/pipeline
+[5:52 PM]
+7. cd .. cd <projektowe>  git checkout -b feature/final
+[5:58 PM]
+8. W repozytorium <projektowym>: rm -rf *
+9.  cd .. cd panda_application git status -> sprawdzamy czy jestesmy na galezi feature/pipeline(edited)
+[6:00 PM]
+10. Wewnątrz panda_applcation: cp -r * ../<projektowe>/
+[6:01 PM]
+11. cd .. cd <projektowe> git status
+[6:01 PM]
+12 git add . git commit -m "pipeline"
+[6:02 PM]
+13 git push --set-upstream origin feature/final
+[6:06 PM]
+14 cd .. cd  panda_env
+[6:07 PM]
+15 edytujemy plik start.sh i dodajemy wewnątrz: chown 1000:1000 -R volumes/jenkins/ (przed cd compose)
+
+MonikaToday at 6:19 PM
+Bateria.. zaraz wracam
+
+Krzysiek_SToday at 6:23 PM
+16. sudo su (wchodzimy na roota), a następnie ./start.sh
+NEW
+
+Krzysiek_SToday at 7:12 PM
+--------------
+[7:13 PM]
+1. uruchamiamy exporty
+2. dodajemy do docker-compose 
+3. Wchodzimy do panda_env i odpalamy start.sh
+4. docker exec -it ubuntucompose bash a nastepnie env i sprawdzamy czy sie dodało
+
