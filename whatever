@@ -66,3 +66,14 @@ https://github.com/PandaAcademy/panda_env
 [7:27 PM]
 3. Usuwamy w obu katalogach katalog .git (rm -rf .git)
 
+[local]
+localhost
+
+[aws]
+${ansible_ip}
+
+[aws:vars]
+ansible_user=ubuntu
+ansible_ssh_private_key_file=../panda.pem
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
