@@ -55,3 +55,6 @@ Krzysiek_SToday at 7:12 PM
 3. Wchodzimy do panda_env i odpalamy start.sh
 4. docker exec -it ubuntucompose bash a nastepnie env i sprawdzamy czy sie dodało
 
+https://github.com/PandaAcademy/panda_application -> branch feature/pipeline
+https://github.com/PandaAcademy/panda_env
+
