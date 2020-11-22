@@ -1,0 +1,335 @@
+    1  pwd
+    2  whoami
+    3  top
+    4  background
+    5  bg
+    6  exit
+    7  vagrant ssh-config
+    8  exit
+    9  vagrant down
+   10  exit
+   11  supo apt-get update
+   12  sudo apt-get update
+   13  suod apt-get install git
+   14  sudo apt-get install git
+   15  git init
+   16  ls
+   17  pwd
+   18  mkdir asia
+   19  git init /asia
+   20  sudo git init /asia
+   21  ls -a
+   22  cd .git
+   23  ll
+   24  git config --global user.name "ituwpisujemójmail"
+   25  cat config
+   26  git config --global user.name "asia"
+   27  git config --global mail "ituwpisujemójmail"
+   28  git config --list
+   29  git config user.email "ituwpisujemójmail"
+   30  git config --list
+   31  cat config
+   32  git config user.name "asia"
+   33  cat config
+   34  touch asia
+   35  ls
+   36  mkdir asia
+   37  sudo mkdir asia
+   38  git status
+   39  cd ..
+   40  ll
+   41  cd asia/
+   42  touch asia
+   43  git status
+   44  cd .git
+   45  ll
+   46  git status
+   47  ll
+   48  git add asia
+   49  git status
+   50  git add asia
+   51  git status
+   52  touch ala
+   53  git status
+   54  git add ala
+   55  git status
+   56  git commit
+   57  cat > asia
+   58  git status
+   59  git add asia
+   60  git status
+   61  git commit -m 'pierwszy'
+   62  git status
+   63  git log
+   64  git log --oneline
+   65  git commit
+   66  touch ala2
+   67  git add ala2
+   68  git commit
+   69  git log
+   70  git status
+   71  git log --oneline
+   72  git log --graph --simplify-by-decoration --pretty=format:'%d' --all
+   73  cat asia > maja
+   74  git status
+   75  cat > asia 
+   76  git status
+   77  cat > asia
+   78  git status
+   79  git add asia
+   80  git status
+   81  cat > asia
+   82  git status
+   83  git add .
+   84  git status
+   85  git rm maja
+   86  rm maja
+   87  ll
+   88  git log
+   89  git status
+   90  git add .
+   91  git status
+   92  git reset asia
+   93  git status
+   94  git log --graph --simplify-by-decoration --pretty=format:'%d'https://github.com/k-o-s/Docker.git  --all
+   95  git status
+   96  git add .
+   97  git status
+   98  git reset asia
+   99  git status
+  100  git add asia
+  101  git status
+  102  git reset asia
+  103  git rm
+  104  git rm asia
+  105  git status
+  106  git ls-files --stage
+  107  git log
+  108  ll
+  109  touch rubi
+  110  ll
+  111  git status
+  112  git add rubi
+  113  git status
+  114  git add .
+  115  git status
+  116  ll
+  117  git rm rubi
+  118  cat asia
+  119  git commit -m 'test2 hard'
+  120  git status
+  121  git commit -m 'test2 hard'
+  122  git status
+  123  git log
+  124  git status -s
+  125  git add.
+  126  git add .
+  127  git staus -s
+  128  git status -s
+  129  touch plik.txt
+  130  cat > plik.txt 
+  131  git add plik.txt 
+  132  git status
+  133  git commit -m 'komituje...'
+  134  git status
+  135  git log
+  136  cat > plik.txt 
+  137  git status
+  138  git add plik.txt 
+  139  git status
+  140  git commit -m 'komituje drugi raz w cwiczeniu ...'
+  141  git status
+  142  git log
+  143  cat > plik.txt 
+  144  git status
+  145  git add .
+  146  git commit -m 'komituje trzeci raz ...'https://github.com/k-o-s/Docker.git 
+  147  git log
+  148  git checkout
+  149  git branch --list
+  150  git branch kot
+  151  git branch --list
+  152  git checkout kot
+  153  git branch --lits
+  154  ls
+  155  git checkout master
+  156  git checkout -b dev2
+  157  ll
+  158  git branch --list
+  159  git branch rubi
+  160  git branch --list
+  161  git branch -d maja
+  162  git checkout maja
+  163  git checkout - b maja
+  164  git checkout -b maja
+  165  git branch --list
+  166  vagrant halt
+  167  exit
+  168  vagrant halt
+  169  vagrant -halt
+  170  exit
+  171  vagran -help
+  172  vagrant shutdown
+  173  vagrant down
+  174  vagrant
+  175  vagrant --help
+  176  vagrant config
+  177  vagrant ssh-config
+  178  ll
+  179  exit
+  180  vagrant ssh
+  181  vagrant up
+  182  clear
+  183  vagrant ssh-config
+  184  java -version
+  185  sudo apt install default-jdk 
+  186  java -version
+  187  javac -version
+  188  cd /usr/lib/jvm
+  189  ls -la
+  190  export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 
+  191  export PATH=$JAVA_HOME/bin:$PATH 
+  192  cd ~
+  193  export PATH=$JAVA_HOME/bin:$PATH 
+  194  echo $PATH
+  195  export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+  196  mkdir projects
+  197  cd projects/
+  198  git clone https://github.com/pHubertStasiuk/JavaIntro.git 
+  199  javac src/main/java/pl/pandait/Intro.java
+  200  javac src/main/java/pl/pandait/Intro.java -d target
+  201  javac $(find . -name "*.java") -d target 
+  202  javap -c target/pl/pandait/Intro.class
+  203  xxd target/pl/pandait/Intro.class
+  204  touch manifest.txt
+  205  jar -help
+  206  jar --help
+  207  jar cfm target/Intro.jar manifest.txt -C target .
+  208  jar cfm target/Intro.jar manifest.txt -C target . 
+  209  java -jar target/Intro.jar 
+  210  git checkout feature/external_jar
+  211  javac $(find . -name "*.java") -d target -cp src/resources/lib/\*
+  212  jar cfm target/Intro.jar manifest.txt -C target . 
+  213  java -jar target/Intro.jar 
+  214  mvn -v
+  215  sudo apt install maven
+  216  mvn -v
+  217  export M2_HOME=/usr/share/maven
+  218  export MAVEN_HOME=/usr/share/maven 
+  219  export PATH=${M2_HOME}/bin:${PATH} 
+  220  echo M2_HOME
+  221  echo $M2_HOME
+  222  touch pom.xml
+  223  mvn -v
+  224  mvn clean
+  225  cd projects/
+  226  git clone git clone https://github.com/PandaAcademy/panda_application 
+  227  git clone https://github.com/PandaAcademy/panda_application 
+  228  sudo apt-get update
+  229  sudo apt-get install     apt-transport-https     ca-certificates     curl     gnupg-agent     software-properties-common
+  230  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  231  sudo apt-key fingerprint 0EBFCD88
+  232  sudo add-apt-repository    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+  233     $(lsb_release -cs) \
+  234     stable"
+  235  sudo apt-get update
+  236  sudo apt-get install docker-ce docker-ce-cli containerd.io
+  237  apt-cache madison docker-ce
+  238  sudo apt-get install docker-ce=<VERSION_STRING> docker-ce-cli=<VERSION_STRING> containerd.io
+  239  sudo docker run hello-world
+  240  curl -fsSL https://get.docker.com -o get-docker.sh
+  241  sudo sh get-docker.sh
+  242  sudo usermod -aG docker your-user
+  243  sudo dpkg -i /path/to/package.deb
+  244  sudo apt-get install docker-ce=<VERSION_STRING> docker-ce-cli=<VERSION_STRING> containerd.io
+  245  apt-cache madison docker-ce
+  246  sudo apt-get install docker-ce=<VERSION_STRING> docker-ce-cli=<VERSION_STRING> containerd.io
+  247  sudo docker run hello-world
+  248  history
+  249  docker --version
+  250  sudo usermod -aG docker your-panda
+  251  sudo usermod -aG docker panda
+  252  docker run Hello world
+  253  docker run hello-world
+  254  exit
+  255  docker run hello-world
+  256  docker run --help
+  257  docker ps -a
+  258  docker start 25efc844a34c 
+  259  docker start f368f23bd7d3 
+  260  docker logs f368f23bd7d3
+  261  docker inspect hello-world
+  262  docker info
+  263  docker rm 25efc844a34c
+  264  docker ps -a
+  265  docker rmi hello-world
+  266  docker pull hello-wordl
+  267  docker pull hello-world
+  268  docker images
+  269  docker tag local-image:hello-world new-repo:RepoZPusha
+  270  docker tag local-image:hello-world new-repo:PandaIT
+  271  docker images
+  272  docker tag local-image:hello-world-panda new-repo:RepozPusha
+  273  ps -a
+  274  docker ps -a
+  275  docker rm b8dda32dd075
+  276  docker ps -a
+  277  docker tag local-image:hello-world-panda new-repo:panda
+  278  docker rm f368f23bd7d3 
+  279  docker ps -a
+  280  docker image
+  281  docker tag local-image:hello-world-panda new-repo:helloPanda
+  282  docker push new-repohelloPanda
+  283  docker push new-repo:helloPanda
+  284  docker run hello-world
+  285  docker image
+  286  docker images
+  287  docker tag local-image:hello-world-panda new-repo:helloPanda
+  288  docker tag local-image:hello-world new-repo:panda
+  289  docker ps -a
+  290  docker tag hello-world:panda joannademo/panda:panda
+  291  docker tag hello-world:latest joannademo/panda:panda
+  292  docker push joannademo/panda:panda
+  293  docker login
+  294  docker tag hello-world:latest joannademo/panda:panda
+  295  docker push joannademo/panda:panda
+  296  docker push joannademo:panda
+  297  docker tag hello-world:latest joannademo/panda:panda
+  298  docker push joannademo:panda
+  299  docker push joannademo/panda:panda
+  300  docker images
+  301  docker push joannademo/panda:panda
+  302  docker volume create Panda 
+  303  docker volume ls
+  304  docker --name Panda
+  305  docker run --name app -v Panda:/ pandaacademy/webapp
+  306  docker run --name app -v Panda:/var pandaacademy/webapp
+  307  cd var/lib/
+  308  ls /var/lib/docker/volume/Panda
+  309  sudo /var
+  310  sudo cd /var/lib
+  311  cd
+  312  cd /
+  313  cd /var
+  314  cd lib
+  315  ll
+  316  cd docker/
+  317  ll
+  318  sudo ll
+  319  ls/docker/volumes/
+  320  cd /docker
+  321  ll
+  322  sudo su - root
+  323  cd 
+  324  mkdir temp
+  325  docker run --name app2 -v /temp:/var pandaacademy/webapp
+  326  cd temp/
+  327  touch test
+  328  sudo docker exec -it app2 /bin/bash
+  329  ls
+  330  mount
+  331  pwd
+  332  history
+
+
+przykladowe URL https://github.com/k-o-s/Docker.git 
