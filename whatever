@@ -1,4 +1,4 @@
-
+4 Useful Tools to Run Commands on Multiple Linux Servers https://www.tecmint.com/run-commands-on-multiple-linux-servers/
 
 To redirect, for example, port 8080 of my computer, from any source, to port 80 of a container that uses the nginx:alpine image, I just have to run:
 docker run -d -p 8080:80 nginx:alpine
