@@ -1,3 +1,21 @@
+…or create a new repository on the command line
+
+echo "# reponame" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/userName/repoName.git
+git push -u origin main
+
+…or push an existing repository from the command line
+
+git remote add origin https://github.com/userName/repoName.git
+git branch -M main
+git push -u origin main
+
+======================================================================================================
+
 plugin BlueOcean - dla ladnej wizualizacji pipeline'ow
 
 Jenkins:
